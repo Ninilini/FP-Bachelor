@@ -8,32 +8,61 @@ else
   translate = $(shell echo '$1' | sed 's/:/;/g')
 endif
 
-all: build/main.pdf
+all: Protokoll.pdf
 
 # hier Python-Skripte:
-build/plot.pdf: plot.py matplotlibrc header-matplotlib.tex | build
-	TEXINPUTS="$(call translate,$(pwd):)" python plot.py
+plots: plots/plot.py matplotlibrc header-matplotlib.tex | data
+	@echo 'Python-Plots:'
+	TEXINPUTS="$(call translate,$(pwd):)" python plots/plot.py
+	@echo
 
-# hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-build/main.pdf: build/plot.pdf
+again:
+	@make clean
+	@make all
 
-build/main.pdf: FORCE | build
-	  TEXINPUTS="$(call translate,build:)" \
-	  BIBINPUTS=build: \
-	  max_print_line=1048576 \
-	latexmk \
-	  --lualatex \
-	  --output-directory=build \
-	  --interaction=nonstopmode \
-	  --halt-on-error \
-	main.tex
+clean:
+	@rm -rf build
+	@echo 'Entferne build-Ordner'
+
 
 build:
 	mkdir -p build
 
-clean:
-	rm -rf build
+data:
+	mkdir -p data
 
-FORCE:
+graphics:
+	mkdir -p graphics
 
-.PHONY: all clean
+tables:
+	mkdir -p tables
+
+plots/plot.pdf: plots/plot.py matplotlibrc header-matplotlib.tex data
+	@echo 'Python-Plots:'
+	TEXINPUTS="$(call translate,$(pwd):)" python plots/plot.py
+	@echo
+
+.DELETE_ON_ERROR:
+# hier weitere Abhängigkeiten für build/main.pdf deklarieren:
+Protokoll.pdf: main.tex content/* header.tex lit.bib programme.bib plots/plot.pdf graphics tables | build
+	@TEXINPUTS="$(call translate,build:)" lualatex \
+		--output-directory=build \
+		--interaction=nonstopmode \
+		--halt-on-error \
+	main.tex|grep -B 12 -e'no output PDF file produced' -e'LuaTeX' --color=auto
+	@echo
+	@BIBINPUTS=build: biber build/main.bcf|grep -i -e'biber' -e'error' -e'warn' --color=auto
+	@echo
+	@lualatex \
+		--output-directory=build \
+		--interaction=nonstopmode \
+		--halt-on-error \
+	main.tex>/dev/null
+	@lualatex \
+		--output-directory=build \
+		--interaction=nonstopmode \
+		--halt-on-error \
+	main.tex|grep  -e'reference' -e'LuaTeX' --color=auto
+	@mv build/main.pdf Protokoll.pdf
+	@make clean
+	@echo Success
