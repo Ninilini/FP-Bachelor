@@ -1,1 +1,66 @@
 \section{Diskussion}
+
+Die Auswertung der beiden Würfel mit homogenen Materialverteilungen ergab die in
+Tabelle~\ref{tab:2und3} aufgeführten Absorptionskoeffizienten. Vergleicht man
+diese mit den Literaturwerten in Tabelle~\ref{tab:lit}, so ergeben sich sehr
+eindeutige Zuordnungen zu den aufgeführten Materialien. Würfel~2 stimmt mit
+einem bestimmten Koeffizienten von $\mu_2 = \SI{0.23(2)}{\per\centi\meter}$
+sehr gut mit einer Zusammensetzung aus Aluminium überein. Die Abweichung beträgt
+etwa $\SI{13.3}{\percent}$. Würfel~3 wies nach Messung einen
+Absorptionskoeffizienten von $\mu_3 = \SI{0.93(7)}{\per\centi\meter}$ auf.
+Dieser stimmt wiederum am besten mit einer Zusammensetzung aus Blei überein.
+Die Abweichung beträgt hierbei etwa $\SI{25.3}{\percent}$.
+
+\begin{table}[htb]
+  \centering
+  \caption{Absorptionskoeffizienten einiger Metalle. Die Werte folgen aus den Dichten und Absorptionskoeffizienten der einzelnen Elemente~\cite{koeff}.}
+  \begin{tabular}{c
+                  S[table-format=1.3]
+									S[table-format=2.2]
+									S[table-format=1.3]}
+    \toprule
+    {Material} & {$\sigma$, $\si{\centi\meter\squared\per\gram}$} & {$\rho$, $\si{\gram\per\centi\meter^{3}}$} & {$\mu$, $\si{\per\centi\meter}$} \\
+		\midrule
+    Blei & 0.110 & 11.34 & 1.245 \\
+    Messing & 0.073 & 8.41 & 0.614 \\
+	Eisen & 0.073 & 7.86 & 0.574 \\
+	Aluminium & 0.075 & 2.71 & 0.203 \\
+	Delrin & 0.082 & 1.42 & 0.116 \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:lit}
+\end{table}
+
+Die Messwerte für Würfel~5 lassen auf die folgende Zusammensetzung aus
+Teilwürfeln schließen. Dabei wurden die Absorptionskoeffizienten tendenziell nach oben abgeschätzt, da die Messergebnisse für die Würfel aus einheitlichem Material bereits größere Abweichungen aufweisen. Gerade bei dichteren Materialien wie Blei steigt diese an.
+
+\begin{table}[htb]
+  \centering
+  \caption{Aus den verschiedenen Absorptionskoeffizienten bestimmte Zusammensetzung der Teilwürfel von Würfel 5.}
+  \begin{tabular}{c|
+                  S[table-format=1.4(1)]
+                  S
+                  c}
+    \toprule
+    {Teilwürfel} & {Absorptionskoeffizient $\mu$, $\si{\per\centi\meter}$} &  {Material} & {Abweichung, $\si{\percent}$} \\
+	\midrule
+  1 &  0.26(6) & Aluminium &  28.1\\
+  2 &  0.81(8) & Messing & 31.9\\
+  3 &  0.15(5) & Aluminium & 26.1\\
+  4 &  -0.05(6) & - & -\\
+  5 &  1.08(9) & Blei & 13.3\\
+  6 &  0.15(7) & Aluminium & 26.1\\
+  7 &  0.01(5) & Delrin & 91.3\\
+  8 &  0.23(6) & Alumiunium & 13.3\\
+  9 &  0.01(5) & Delrin & 91.3\\
+    \bottomrule
+  \end{tabular}
+  \label{tab:ergebnisse5}
+\end{table}
+
+Diese Schätzung sind jedoch nur sehr grob. Gerade für die Teilwürfel 7 und 9 kommt es zu sehr hochen Abweichungen. Die Vermutung liegt nahe, dass der entsprechende Teilwürfel aus Luft besteht, dies wurde jedoch kategorisch ausgeschlossen. Zudem ergibt sich für den vierten Teilwürfel ein negativer Absorptionskoeffizient, dies ist physikalisch nicht sinnvoll. Zudem sollte das Verwenden eines überbestimmten Gleichungssystems die Fehler deutlich minimieren. Bei dem Vergleich der Werte der Würfel 2,3 und 5 fällt jedoch auf, dass die Veränderungen nur maginal sind. \\
+Dies deutet sehr stark darauf hin, dass das Problem in der Datennahme selber liegt. Zum einen stellt die ungenaue Justierung der Projektionen eine große Fehlerquelle da. Es ist sehr unwahrscheinlich, dass mehrfach genau die gleiche Projektion getroffen worden ist. Dies ist problematisch, da leicht veränderte Laufwege im Material größere Abweichungen zur Folge haben. Zudem ist die Justierung dadurch erschwert, dass nur wenige Orientierungshilfen für die Ausrichtung der Würfel zur Verfügung steht. \\
+Das größte Problem stellt jedoch die Datennahme mit dem Programm selber dar. Da der Untergrund durch das Programm selber abgezogen wird, kommt es hierbei zu deutlichen systematischen Fehlern, die nicht ausgeglichen werden können. Dies hat sich besonders bei der Vermessung des reinen Bleiwürfels gezeigt. Bei diesem war es nicht möglich Daten für die Projektion 9 zunehmen, da das Programm einen deutlich zu großen Teil der Datenmenge als Untergrund ausgeschlossen hat.\\
+Des Weiteren ist auch die aus der radioaktiven Quelle stammende Strahlung kein
+perfekt fokussierter Strahl. Dies wird noch dadurch verstärkt, dass es sich bei Zerfallsprozessen um statistische Prozesse handelt, sodass es bei der Auswertung der Quelle zeitliche Schwankungen auftreten können. Dadurch kommt es gerade bei diagonale Messungen zu starken Abweichungen.\\
+Abschließend lässt sich sagen, dass genaue Materialbestimmung durch dieses Verfahren möglich ist, jedoch von einer deutlich höheren Zahl an Messungen profitiert, um so die Fehlerquellen zu minimieren.

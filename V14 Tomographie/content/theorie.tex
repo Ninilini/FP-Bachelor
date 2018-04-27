@@ -27,19 +27,20 @@ in ein Elektron und ein Positron zerfällt. Da die im Versuch verwendete Strahlu
 Durch Überlagerung der verschiedenen Effekte entsteht insgesamt ein exponentieller Zusammenhang zwischen der Intensität der Strahlung und dem
 Absorptionskoeffizient $\mu$ des jeweiligen Materials, welches die Strahlung durchdringt:
 \begin{equation}
-  N = I_0 \exp\left( \sum_i \mu_i d_i \right)
+  \overline{I} = I_0 \exp\left( \sum_i \mu_i d_i \right)
   \label{eq:N}
 \end{equation}
-Dabei ist $N$ die abgeschwächte Intensität, $I_0$ die Anfangintensität und die $d_i$ die Dicke des Materials in Strahlrichtung.
+Dabei ist $\overline{I}$ die abgeschwächte Intensität, $I_0$ die Anfangintensität und die $d_i$ die Dicke des Materials in Strahlrichtung.
 
 \subsection{Bestimmung der Absorptionskoeffizienten}
 Nach Umstellen der Gleichung \eqref{eq:N} zu
 \begin{equation}
-  \sum_i\mu_i d_i = \ln\left(\frac{I_0}{N_j}\right)
+  \sum_i\mu_i d_i = \ln\left(\frac{I_0}{\overline{I}_j}\right)
 \end{equation}
 lässt sich diese in Matrixform schreiben:
 \begin{equation}
   A\cdot\vec{\mu} = \vec{I}
+  \label{eqn:1}
 \end{equation}
 Der Vektor $\vec{\mu}$ enthält dabei sämtliche Absorptionskoeffizienten der Elementarwürfel und der Vektor $\vec{I}$ die Anfangsintensität und die jeweiligen abgeschwächten
 Intensitäten für die verschiedenen gewählten Strahlengänge. Die Matrix $A$ enthält die Informationen über die Abstände. Da eine Schicht des Würfels aus
@@ -53,3 +54,18 @@ Messungen gemacht werden. Da der Würfel jedoch nicht ganz exakt im Strahlengang
   \caption{Die ausgewählten Projektionen zur Messung der mittleren Schicht eines 3x3x3 Würfels.}
   \label{fig:wuerfel}
 \end{figure}
+
+Durch Nutzung der Methode der kleinsten Quadrate lassen sich die unterschiedlichen Unsicherheiten auf die gemessenn Werte von $\vec{I}$ in der Gleichung \ref{eqn:1} berücksichtigen. Dies führt zu der Form
+\begin{gather}
+  WA\cdot\vec{\mu}=W\vec{I} \\
+  \intertext{mit der Gewichtungsmatrix}
+  W=V[I]^{-1}
+\end{gather}
+Durch Umstellen dieser Formel ergibt sich nun für $\vec{\mu}$
+\begin{equation}
+  \vec{\mu}=\left(A^TWA\right)^{-1}\left(A^TW\vec{I}\right)
+\end{equation}
+mit den Unsicherheiten
+\begin{equation}
+  V[\mu]=\left(A^TWA\right)^{-1}
+\end{equation}
