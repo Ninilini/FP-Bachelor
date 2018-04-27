@@ -6,14 +6,14 @@ import pandas as pd
 np.set_printoptions(precision=4)
 
 # Dateneinlesen
-counts = np.genfromtxt('../data/Alu_leer/alu_l_2.Spe', skip_header=12,
+counts = np.genfromtxt('data/Alu_leer/alu_l_2.Spe', skip_header=12,
                        skip_footer=17)
-counts_0 = np.genfromtxt('../data/leer.Spe', skip_header=12,
+counts_0 = np.genfromtxt('data/leer.Spe', skip_header=12,
                          skip_footer=17)
-I_l, c_l, t_l = np.genfromtxt('../data/Alu_l.txt', unpack=True)
-I_2, c_2, t_2 = np.genfromtxt('../data/W2.txt', unpack=True)
-I_3, c_3, t_3 = np.genfromtxt('../data/W3.txt', unpack=True)
-I_5, c_5, t_5 = np.genfromtxt('../data/W5.txt', unpack=True)
+I_l, c_l, t_l = np.genfromtxt('data/Alu_l.txt', unpack=True)
+I_2, c_2, t_2 = np.genfromtxt('data/W2.txt', unpack=True)
+I_3, c_3, t_3 = np.genfromtxt('data/W3.txt', unpack=True)
+I_5, c_5, t_5 = np.genfromtxt('data/W5.txt', unpack=True)
 
 leer = counts
 error_leer = np.sqrt(counts)
