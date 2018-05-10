@@ -1,5 +1,7 @@
  # coding=utf-8
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -65,10 +67,11 @@ def kleinsteQuadrate(y, W, A):
 
 
 # Alu_leer
-plt.bar(range(0, 511), leer, yerr=error_leer)
-plt.xlim(0, 250)
+x = np.linspace(0,511*662/132,511)
+plt.bar(x, leer, yerr=error_leer)
+plt.xlim(0, 250*662/176)
 plt.title('Messung des leeren Würfels')
-plt.xlabel('Kanal')
+plt.xlabel('Energie / keV')
 plt.ylabel('Ereignisse')
 plt.savefig('Alu_leer.pdf')
 plt.close()
@@ -76,7 +79,7 @@ plt.close()
 print('Spektrum der Alu_leer geplottet...')
 
 # Leer
-
+x = np.linspace(0,511*662/132,511)
 plt.bar(range(0, 511), null, yerr=error_null)
 plt.xlim(0, 250)
 plt.title('Messung ohne Würfel')
@@ -236,23 +239,23 @@ Fehler = {}
 '''.format(mu_2, err_mu_2, mu_3, err_mu_3, mu_5, err_mu_5)
 )
 
-f1=(0.203-0.23)/0.203
-f2=(1.245-0.93)/1.245
-f3=(0.203-0.26)/0.203
-f4=(0.614-0.81)/0.614
-f5=(0.203-0.15)/0.203
-f7=(1.245-1.08)/1.245
-#f6=(0.203-0.23)/0.203
-f8=(0.203-0.15)/0.203
-f9=(0.116-0.01)/0.116
-f10=(0.203-0.23)/0.203
-f11=(0.116-0.01)/0.116
-print(f1)
-print(f2)
-print(f3)
-print(f4)
-print(f5)
-print(f7)
-print(f8)
-print(f10)
+# f1=(0.203-0.23)/0.203
+# f2=(1.245-0.93)/1.245
+# f3=(0.203-0.26)/0.203
+# f4=(0.614-0.81)/0.614
+# f5=(0.203-0.15)/0.203
+# f7=(1.245-1.08)/1.245
+# #f6=(0.203-0.23)/0.203
+# f8=(0.203-0.15)/0.203
+# f9=(0.116-0.01)/0.116
+# f10=(0.203-0.23)/0.203
+f11=(0.116-0.05)/0.116
+# print(f1)
+# print(f2)
+# print(f3)
+# print(f4)
+# print(f5)
+# print(f7)
+# print(f8)
+# print(f10)
 print(f11)
