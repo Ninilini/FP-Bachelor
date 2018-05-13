@@ -70,7 +70,7 @@ def kleinsteQuadrate(y, W, A):
 x = np.linspace(0,511*662/132,511)
 plt.bar(x, leer, yerr=error_leer)
 plt.xlim(0, 250*662/176)
-plt.title('Messung des leeren Würfels')
+plt.title('Messung des leeren Wuerfels')
 plt.xlabel('Energie / keV')
 plt.ylabel('Ereignisse')
 plt.savefig('Alu_leer.pdf')
@@ -82,19 +82,19 @@ print('Spektrum der Alu_leer geplottet...')
 x = np.linspace(0,511*662/132,511)
 plt.bar(range(0, 511), null, yerr=error_null)
 plt.xlim(0, 250)
-plt.title('Messung ohne Würfel')
+plt.title('Messung ohne Wuerfel')
 plt.xlabel('Kanal')
 plt.ylabel('Ereignisse')
 plt.savefig('Leer.pdf')
 plt.close()
 
-print('(Zusätzlich: Spektrum der Leer geplottet...)')
+print('(Zusaetzlich: Spektrum der Leer geplottet...)')
 
 c_no = 13708
 t_no = 74.46  # s
 rate_no = c_no / t_no
 
-print('Messung ohne Würfel mit Rate: {:2f} +- {:2f} counts/s'
+print('Messung ohne Wuerfel mit Rate: {:2f} +- {:2f} counts/s'
       .format(rate_no, np.sqrt(c_no)/t_no))
 
 # I_0s für die Projektionen 2, 9, 10, 11
@@ -154,7 +154,7 @@ err_I_5 = np.sqrt((np.sqrt(rate_5) / rate_5)**2 + (err_I_leer / I_leer)**2)
 print('''
     ###############################################################
 
-    ~~~ Raten der verschiedenen Würfel ~~~
+    ~~~ Raten der verschiedenen Wuerfel ~~~
 
     Alu_leer: (Projektionen 2, 9, 10, 11)
     -----------------------------------------------
@@ -166,17 +166,17 @@ print('''
     Werte = {}
     Fehler = {}
 
-    Würfel 2: (Projektionen 2, 9, 10, 11)
+    Wuerfel 2: (Projektionen 2, 9, 10, 11)
     -----------------------------------------------
     Werte = {}
     Fehler = {}
 
-    Würfel 3: (Projektionen 2, 10, 11)
+    Wuerfel 3: (Projektionen 2, 10, 11)
     -----------------------------------------------
     Werte = {}
     Fehler = {}
 
-    Würfel 5: (alle {} Projektionen)
+    Wuerfel 5: (alle {} Projektionen)
     -----------------------------------------------
     Werte = {}
     Fehler = {}
@@ -187,19 +187,19 @@ print('''
               rate_3, err_rate_3, len(rate_5), rate_5, err_rate_5))
 
 print('''
-~~~ Logarithmen der Raten der verschiedenen Würfel ~~~
+~~~ Logarithmen der Raten der verschiedenen Wuerfel ~~~
 
-Würfel 2:
+Wuerfel 2:
 -----------------------------------------------
 Werte = {}
 Fehler = {}
 
-Würfel 3:
+Wuerfel 3:
 -----------------------------------------------
 Werte = {}
 Fehler = {}
 
-Würfel 5:
+Wuerfel 5:
 -----------------------------------------------
 Werte = {}
 Fehler = {}
@@ -220,19 +220,19 @@ mu_5, err_mu_5 = kleinsteQuadrate(I_5, W=W_5, A=A)
 
 print(
 '''
-~~~ Absorptionskoeffizienten der verschiedenen Würfel ~~~
+~~~ Absorptionskoeffizienten der verschiedenen Wuerfel ~~~
 
-Würfel 2:
+Wuerfel 2:
 -----------------------------------------------
 Werte = {}
 Fehler = {}
 
-Würfel 3:
+Wuerfel 3:
 -----------------------------------------------
 Werte = {}
 Fehler = {}
 
-Würfel 5:
+Wuerfel 5:
 -----------------------------------------------
 Werte = {}
 Fehler = {}

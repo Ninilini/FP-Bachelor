@@ -37,9 +37,9 @@ graphics:
 tables:
 	mkdir -p tables
 
-plots/plot.pdf: plots/plot.py matplotlibrc header-matplotlib.tex data
+plots/plot.pdf: plots/plot.py data
 	@echo 'Python-Plots:'
-	TEXINPUTS="$(call translate,$(pwd):)" python3 plots/plot.py
+	python3 plots/plot.py
 	@echo
 
 .DELETE_ON_ERROR:
