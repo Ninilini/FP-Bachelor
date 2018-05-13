@@ -1,61 +1,64 @@
 \section{Zielsetzung}
 Ziel des Versuchs ist die Bestimmung der Zusammensetzung eines Würfels, der sich aus 27 Einheitswürfeln verschiedener Materialien zusammensetzt.
-Dazu wird als bildgebendes Verfahren Tomographie verwendet.
+Dazu wird die Tomographie verwendet, welche ein bildgebendes Verfahren ist.
 
 
 \section{Theorie}
+Bei der Tomographie durchdringt Strahlung die Materie, die untersucht werden soll und wird durch die Wechselwirkung mit der Materie abgeschwächt. Die Abschwächung ist materialabhängig, sodass durch Messung der
+Intensität auf die Zusammensetzung des untersuchten Objekts geschlossen werden kann. Durch mehrfache Messung der selben Schicht aus verschiedenen Richtungen werden verschiedene Projektionen erzeugt, die zu einem
+zweidimensionalen Abbild des Objekts zusammengesetzt werden können.
+
 \subsection{Grundlagen}
-Als $\gamma$-Strahlungsquelle wird ${}^{137}Cs$ verwendet, dessen radioaktiver Zerfall zu ${}^{137}Ba$ in Abbildung \ref{fig:zerfall} dargestellt ist.
-Das ${}^{137}Cs$ zerfällt nur mit einer Wahrscheinlichkeit von $\SI{5.4}{\%}$ direkt in den Grundzustand des ${}^{137}Ba$ und zerfällt sonst erst
-in einen angeregten Bariumkern, welcher dann unter Aussendung eines Photons mit einer Energie von $\SI{0.662}{keV}$ in den Grundzustand fällt.
+Als $\gamma$-Strahlungsquelle wird ${}^{137}\text{Cs}$ verwendet, dessen radioaktiver Zerfall zu ${}^{137}Ba$ in Abbildung \ref{fig:zerfall} dargestellt ist.
+Das ${}^{137}\text{Cs}$ zerfällt mit einer Wahrscheinlichkeit von $\SI{5.4}{\%}$ direkt in den Grundzustand des ${}^{137}Ba$ und zerfällt sonst erst
+in einen angeregten Bariumkern, welcher unter Aussendung eines Photons mit der Energie von $\SI{662}{keV}$ in den Grundzustand fällt.
 
 \begin{figure}
   \centering
   \includegraphics[scale=0.4]{graphics/Zerfall.png}
-  \caption{Zerfallsschema von ${}^{137}Cs$}
+  \caption{Zerfallsschema von ${}^{137}\text{Cs}$\cite{zerfall}.}
   \label{fig:zerfall}
 \end{figure}
 
-Die Wechselwirkung der $\gamma$-Strahlung setzt sich im Wesentlichen aus drei verschiedenen Prozessen zusammen: Photoeffekt, Compton-Effekt und Paarbildung.
-Beim Photoeffekt gibt das Photon seine gesamte Energie an ein Hüllenelektron eines Atoms ab und wird dabei ausgelöscht. Das Elektron wird dabei aus seiner
+Die Wechselwirkung der $\gamma$-Strahlung mit Materie setzt sich im Wesentlichen aus drei verschiedenen Prozessen zusammen: Photoeffekt, Compton-Effekt und Paarbildung.
+
+Beim Photoeffekt gibt das Photon seine gesamte Energie an ein Hüllenelektron eines Atoms ab und wird dabei absorbiert. Das Elektron wird dabei aus seiner
 Bindung gelöst und erhält die gesamte Photonenenergie abzüglich der Bindungsenergie. Deshalb tritt der Effekt erst bei $E_\gamma > E_\text{B}$ auf.
+
 Der Compton-Effekt beschreibt die inelastische Streuung eines Photons an einem Elektron, bei der das Photon nur einen Teil seiner Energie abgibt und nicht
-ausgelöscht wird. Bis zu einer Photonenenergie von $\SI{100}{keV}$ dominiert der Photoeffekt und im Bereich $\SI{100}{keV} - \SI{10}{MeV}$ der
-Compton-Effekt. Die Paarbildung tritt erst ab einer Energie von $2m_\text{e}c^2 = \SI{1.02}{MeV}$ auf, da dabei ein Photon im Coulomb-Feld eines Atomkerns
-in ein Elektron und ein Positron zerfällt. Da die im Versuch verwendete Strahlung eine geringere Energie besitzt, spielt die Paarbildung hier keine Rolle.
+absorbiert wird. Bis zu einer Photonenenergie von $\SI{100}{keV}$ dominiert der Photoeffekt und im Bereich $\SI{100}{keV} - \SI{10}{MeV}$ der
+Compton-Effekt.
+
+Bei der Paarbildung zerfällt ein Photon im Coulomb-Feld eines Atomkerns in ein Elektron und ein Positron. Dabei wird die Energie des Photons größtenteils in die Ruheenergie
+und die kinetische Energie des Elektrons und des Positrons umgewandelt. Das bedeutet, dass die Energie des Photons aufgrund der Energieerhaltung mindestens der Summe der
+Ruheenergien ($2m_\text{e}c^2 = \SI{1.02}{MeV}$) entsprechen muss, damit die Paarbildung stattfinden kann. Bei der Verwendung von ${}^{137}\text{Cs}$ spielt die Paarbildung
+keine Rolle, da die Strahlung nicht genug Energie besitzt.
 
 Durch Überlagerung der verschiedenen Effekte entsteht insgesamt ein exponentieller Zusammenhang zwischen der Intensität der Strahlung und dem
 Absorptionskoeffizient $\mu$ des jeweiligen Materials, welches die Strahlung durchdringt:
 \begin{equation}
-  \overline{I} = I_0 \exp\left( \sum_i \mu_i d_i \right)
+  \bar{I} = I_0 \exp\left( \sum_i \mu_i d_i \right)
   \label{eq:N}
 \end{equation}
-Dabei ist $\overline{I}$ die abgeschwächte Intensität, $I_0$ die Anfangintensität und die $d_i$ die Dicke des Materials in Strahlrichtung.
+Dabei ist $\bar{I}$ die abgeschwächte Intensität, $I_0$ die Anfangintensität und die $d_i$ die Dicke des Materials in Strahlrichtung.
 
 \subsection{Bestimmung der Absorptionskoeffizienten}
 Nach Umstellen der Gleichung \eqref{eq:N} zu
 \begin{equation}
-  \sum_i\mu_i d_i = \ln\left(\frac{I_0}{\overline{I}_j}\right)
+  \sum_i\mu_i d_i = \ln\left(\frac{I_0}{\bar{I}_j}\right)
 \end{equation}
 lässt sich diese in Matrixform schreiben:
 \begin{equation}
   A\cdot\vec{\mu} = \vec{I}
   \label{eqn:1}
 \end{equation}
-Der Vektor $\vec{\mu}$ enthält dabei sämtliche Absorptionskoeffizienten der Elementarwürfel und der Vektor $\vec{I}$ die Anfangsintensität und die jeweiligen abgeschwächten
-Intensitäten für die verschiedenen gewählten Strahlengänge. Die Matrix $A$ enthält die Informationen über die Abstände. Da eine Schicht des Würfels aus
-neun Elementarwürfeln besteht, ist die Matrix für $m$ Messungen $9\times m$-dimensional. Damit das Gleichungssystem lösbar ist, müssen mindestens 9
-Messungen gemacht werden. Da der Würfel jedoch nicht ganz exakt im Strahlengang ausgerichtet werden kann, werden mehr Messungen vorgenommen, sodass ein
-überbestimmtes Gleichungssystem entsteht. Abbildung \ref{fig:wuerfel} zeigt die ausgewählten Projektionen.
+Der Vektor $\vec{\mu}$ enthält dabei sämtliche Absorptionskoeffizienten der Materialien innerhalb des untersuchten Objekts und der Vektor $\vec{I}$ die Anfangsintensität und die jeweiligen abgeschwächten
+Intensitäten für die verschiedenen gewählten Strahlengänge. Die Matrix $A$ enthält die Informationen über die Dicken der jeweiligen Materialien in Strahlrichtung. Für eine Schicht des Objekts, die aus
+n elementaren Materialien besteht, ist die Matrix für $m$ Messungen $n\times m$-dimensional. Damit das Gleichungssystem lösbar ist, müssen mindestens $n$
+Messungen gemacht werden. Da der Würfel jedoch nicht ganz exakt im Strahlengang ausgerichtet werden kann, werden deutlich mehr als $n$ Messungen vorgenommen, sodass ein
+überbestimmtes Gleichungssystem entsteht.
 
-\begin{figure}
-  \centering
-  \includegraphics[scale=0.5]{graphics/wuerfel.png}
-  \caption{Die ausgewählten Projektionen zur Messung der mittleren Schicht eines 3x3x3 Würfels.}
-  \label{fig:wuerfel}
-\end{figure}
-
-Durch Nutzung der Methode der kleinsten Quadrate lassen sich die unterschiedlichen Unsicherheiten auf die gemessenn Werte von $\vec{I}$ in der Gleichung \ref{eqn:1} berücksichtigen. Dies führt zu der Form
+Durch Nutzung der Methode der kleinsten Quadrate lassen sich die unterschiedlichen Unsicherheiten auf die gemessenen Werte von $\vec{I}$ in der Gleichung \ref{eqn:1} berücksichtigen. Dies führt zu der Form
 \begin{gather}
   WA\cdot\vec{\mu}=W\vec{I} \\
   \intertext{mit der Gewichtungsmatrix}
