@@ -58,8 +58,12 @@ als maximale Kraftflussdichte des Magnetfeldes. Diese entspricht der Kraftflussd
 
 
 \subsection{Bestimmung der effektiven Masse}
-Zunächst werden die Messwerte der Faraday-Rotation auf die Dicken normiert, da die Proben unterschiedliche Dicken haben.
-% Dicken auflisten
+Zunächst werden die Messwerte der Faraday-Rotation auf die Dicken normiert, da die Proben unterschiedliche Dicken haben:
+\begin{align*}
+  d_\text{hochrein} &= \SI{0.00511}{m} \\
+  d_{N=\SI{1.2e18}{cm^{-3}}} &= \SI{0.00136}{m} \\
+  d_{N=\SI{2.8e18}{cm^{-3}}} &= \SI{0.001296}{m}
+\end{align*}
 Die Messwerte sind in den Tabellen \ref{tab:rein} - \ref{tab:GaAs2} aufgelistet und in Abbildung \ref{fig:GaAs1} aufgetragen.
 \begin{figure}
   \centering
@@ -144,18 +148,17 @@ und der Fit zur Probe mit $N = \SI{2.8e18}{cm^{-3}}$ ergibt
   a &= \SI{9.4\pm6.6e12}{m^{-3}} \\
   b &= \SI{13\pm26}{m^{-3}} \;.
 \end{align*}
-Die Differenzen der Messwerte und die Fits sind in Abbildung \ref{fig:GaAs2} dargestellt. Durch Umstellen der Gleichung \eqref{eq:frei}
-ergibt sich für die effektive Masse der Leitungselektronen
+Die Differenzen der Messwerte und die Fits sind in Abbildung \ref{fig:GaAs2} dargestellt. Dabei wurden die Winkel ins Bogenmaß umgeregnet.
+Durch Umstellen der Gleichung \eqref{eq:frei} ergibt sich für die effektive Masse der Leitungselektronen
 \begin{equation}
-  m^* = \sqrt{\frac{\text{e}_0^3}{8\pii^2\varepsilon_0\text{c}^3}\frac{NB}{n}\frac{1}{a}} \;,
+  m^* = \sqrt{\frac{\text{e}_0^3}{8\pii^2\epsilon_0\text{c}^3}\frac{NB}{n}\frac{1}{a}} \;,
 \end{equation}
-wobei $a$ der Parameter des Fits ist. Für n wurde
-
-\cite{n_GaAs}
+wobei $a$ der Parameter des Fits ist. Für den Brechungsindex für GaAs wurde $n = \num{3.354}$ angenommen, welcher dem Brechungsindex bei einer
+Wellenlänge von $\lambda = \SI{1.77114}{µm}$ entspricht\cite{n_GaAs}.
 Damit ergeben sich die folgenden Werte für die effektiven Massen:
 \begin{align*}
-  N = \SI{1.2e18}{cm^{-3}} &\text{: } m^*= (\num{0.055\pm0.029})m_\text{e} \\
-  N = \SI{2.8e18}{cm^{-3}} &\text{: } m^*= (\num{0.081\pm0.029})m_\text{e}
+  N = \SI{1.2e18}{cm^{-3}} &\text{:}\quad m^*= (\num{0.055\pm0.029})m_\text{e} \\
+  N = \SI{2.8e18}{cm^{-3}} &\text{:}\quad m^*= (\num{0.081\pm0.029})m_\text{e}
 \end{align*}
 
 
@@ -165,3 +168,4 @@ Damit ergeben sich die folgenden Werte für die effektiven Massen:
   \caption{Die Differenzen der Messwerte der Faraday-Rotation.}
   \label{fig:GaAs2}
 \end{figure}
+\newpage
