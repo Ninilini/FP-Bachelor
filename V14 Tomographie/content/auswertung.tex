@@ -1,7 +1,7 @@
 \section{Auswertung}
 Zu Beginn des Experiments wird der statistische Poissonfehler mit Hilfe von:
 \begin{equation*}
-  \frac{1}{\sqrt{N}} < 0.03
+  \frac{1}{\sqrt{N}} < \num{0.03}
 \end{equation*}
 so abgeschätzt, dass er unterhalb von $<\SI{3}{\percent}$ liegt und somit für die weitere
 Rechnung vernachlässigt werden kann. Dies ist der Fall, sobald $\text{N}>1112$
@@ -9,7 +9,7 @@ ist und wird für die gesamten Messungen eingehalten. Um das Spektrum der verwen
 Quelle zu bestimmen, wird zunächst eine Messung durchgeführt bei der sich kein Würfel
 im Strahlengang befindet. Dabei entsteht das in Abbildung \ref{fig:leer} dargestellte Spektrum.
 Dies führt bei einer Messung von $13708$ Ereignisse über $\SI{74.46}{\second}$ zu einer
-Rate von $I'_0 = 225.4\,\pm\,0.7\:\frac{\text{counts}}{\text{s}}$.
+Rate von $I'_0 = (\num{225.4\pm 0.7})\:\frac{\text{counts}}{\text{s}}$.
 
 \begin{figure}
   \centering
@@ -32,24 +32,24 @@ Die Abbildung~\ref{fig:alu} zeigt das gemessene Spektrum.
 
 Da es unterschiedliche Weglängen in dem Würfel gibt, bietet es sich an über alle möglichen verschiedenen
 Weglängen in dem Gehäuse zu messen, sodass man einen möglichst exakten Vergleichswert für jeden Strahlengang
-im Würfel hat. Dazu werden die Projektionen 2, 9, 10 und 11 vermessen. Dadurch ergibt sich der Intensitätsvektor $\vec{I}$~\ref{eq:int}
-für die gemessenen Werte. Da mehrere, der in Abbildung~\ref{fig:wuerfel} dargestellten Projektionen M1 - M16, die gleichen Strahlengängen
+im Würfel hat. Dazu werden die Projektionen 2, 9, 10 und 11 vermessen. Dadurch ergibt sich der Intensitätsvektor $\vec{I}$
+für die gemessenen Werte. Da mehrere der in Abbildung~\ref{fig:wuerfel} dargestellten Projektionen M1 - M16 die gleichen Strahlengänge
 besitzen und diese sich alle auf die Projektionen 2, 9, 10, und 11 zurückführen lassen, ergibt sich der Intensitätsvektor $\vec{\tilde{I}}$.
 
 \begin{equation}
 	\vec{I}=
 	\begin{pmatrix}
 		- \\
-		130.0\,\pm\,1.7 \\
+		\num{130.0 \pm 1.7} \\
 		- \\
 		- \\
 	  - \\
 		- \\
 		- \\
 		- \\
-		122.7\,\pm\,3.1 \\
-		141.1\,\pm\,2.2 \\
-		122.3\,\pm\,2.0 \\
+		\num{122.7 \pm 3.1} \\
+		\num{141.1 \pm 2.2} \\
+		\num{122.3 \pm 2.0} \\
 		- \\
     - \\
     - \\
@@ -59,22 +59,22 @@ besitzen und diese sich alle auf die Projektionen 2, 9, 10, und 11 zurückführe
 	\sfrac{\text{counts}}{\text{s}}\quad
 	\vec{\tilde{I}}=
 	\begin{pmatrix}
-		130.0\,\pm\,1.7 \\
-		130.0\,\pm\,1.7 \\
-		130.0\,\pm\,1.7 \\
-		130.0\,\pm\,1.7 \\
-		130.0\,\pm\,1.7 \\
-		130.0\,\pm\,1.7 \\
-		122.3\,\pm\,2.0 \\
-		141.1\,\pm\,2.2 \\
-		122.7\,\pm\,3.1 \\
-		141.1\,\pm\,2.2 \\
-		122.3\,\pm\,2.0 \\
-		122.3\,\pm\,2.0 \\
-    141.1\,\pm\,2.2 \\
-    122.7\,\pm\,3.1 \\
-    141.1\,\pm\,2.2 \\
-    122.3\,\pm\,2.0 \\
+		\num{130.0\pm 1.7} \\
+		\num{130.0\pm 1.7} \\
+		\num{130.0\pm 1.7} \\
+		\num{130.0\pm 1.7} \\
+		\num{130.0\pm 1.7} \\
+		\num{130.0\pm 1.7} \\
+		\num{122.3\pm 2.0} \\
+		\num{141.1\pm 2.2} \\
+		\num{122.7\pm 3.1} \\
+		\num{141.1\pm 2.2} \\
+		\num{122.3\pm 2.0} \\
+		\num{122.3\pm 2.0} \\
+    \num{141.1\pm 2.2} \\
+    \num{122.7\pm 3.1} \\
+    \num{141.1\pm 2.2} \\
+    \num{122.3\pm 2.0} \\
 	\end{pmatrix}
     \sfrac{\text{counts}}{\text{s}}
 	\label{eq:int}
@@ -108,10 +108,10 @@ Für den Würfel 3, der vollständig aus Blei besteht, ergibt sich:
 \end{equation}
 
 Diese Matrizen beschreiben die Projektionen 2, 9, 10 und 11, wobei bei dem dritten Würfel die Projektion 9 ausgelassen
-wird. Da das verwendeten Programm automatisch den Untergrund von der Messung abzieht und diese Funktion für die Projektion 9
+wird, da das verwendeten Programm automatisch den Untergrund von der Messung abzieht und diese Funktion für die Projektion 9
 einen fehlerhaften Wert ergibt. Unter Verwendung der Methode der kleinsten Quadrate lassen sich nun die Absorptionskoeffizienten
-der einzelnen Materialien mit der Formel~\ref{eqn:mu} bestimmen. Es ergeben sich die in
-Tabelle~\ref{tab:2und3} aufgeführten Ergebnisse. Dabei wird der Intensitätsvektor $\vec{\tilde{I}}$ wie in Formel~\ref{eqn:gewicht}
+der einzelnen Materialien mit der Formel~\eqref{eqn:mu} bestimmen. Es ergeben sich die in
+Tabelle~\ref{tab:2und3} aufgeführten Ergebnisse. Dabei wird der Intensitätsvektor $\vec{\tilde{I}}$ wie in Formel~\eqref{eqn:gewicht}
 für die Gewichtungsmatrix verwendet.
 
 \begin{table}[htb]
@@ -162,42 +162,42 @@ Somit lassen sich die Absorptionskoeffizienten der neun inneren Würfel nur unte
 \begin{equation}
 	\vec{I}_5=
 	\begin{pmatrix}
-		40.2\,\pm\,1.0 \\
-		35.4\,\pm\,1.0 \\
-		92.2\,\pm\,1.7 \\
-		91.4\,\pm\,2.5 \\
-		13.2\,\pm\,0.4 \\
-    103.6\,\pm\,2.8 \\
-		91.8\,\pm\,1.4 \\
-		44.8\,\pm\,1.1 \\
-		24.5\,\pm\,0.7 \\
-		71.9\,\pm\,1.7 \\
-		135.7\,\pm\,2.7 \\
-    133.6\,\pm\,3.7 \\
-		100.7\,\pm\,2.3 \\
-		24.6\,\pm\,0.6 \\
-		26.7\,\pm\,0.7 \\
-		105.5\,\pm\,2.6
+		40,2\,\pm\,1,0 \\
+		35,4\,\pm\,1,0 \\
+		92,2\,\pm\,1,7 \\
+		91,4\,\pm\,2,5 \\
+		13,2\,\pm\,0,4 \\
+    103,6\,\pm\,2,8 \\
+		91,8\,\pm\,1,4 \\
+		44,8\,\pm\,1,1 \\
+		24,5\,\pm\,0,7 \\
+		71,9\,\pm\,1,7 \\
+		135,7\,\pm\,2,7 \\
+    133,6\,\pm\,3,7 \\
+		100,7\,\pm\,2,3 \\
+		24,6\,\pm\,0,6 \\
+		26,7\,\pm\,0,7 \\
+		105,5\,\pm\,2,6
 	\end{pmatrix}
 	\sfrac{\text{counts}}{\text{s}}\quad
 	\vec{\tilde{I}_5}=
 	\begin{pmatrix}
-    1.2\,\pm\,0.2 \\
-		1.3\,\pm\,0.2 \\
-		0.3\,\pm\,0.1 \\
-		0.4\,\pm\,0.1 \\
-		2.3\,\pm\,0.3 \\
-    0.2\,\pm\,0.1 \\
-		0.3\,\pm\,0.1 \\
-		1.0\,\pm\,0.2 \\
-		1.7\,\pm\,0.2 \\
-		0.5\,\pm\,0.1 \\
-		0.1\,\pm\,0.09 \\
-    -0.1\,\pm\,0.09 \\
-		0.2\,\pm\,0.1 \\
-		1.7\,\pm\,0.2 \\
-		1.5\,\pm\,0.2 \\
-		0.3\,\pm\,0.1
+    1,2\,\pm\,0,2 \\
+		1,3\,\pm\,0,2 \\
+		0,3\,\pm\,0,1 \\
+		0,4\,\pm\,0,1 \\
+		2,3\,\pm\,0,3 \\
+    0,2\,\pm\,0,1 \\
+		0,3\,\pm\,0,1 \\
+		1,0\,\pm\,0,2 \\
+		1,7\,\pm\,0,2 \\
+		0,5\,\pm\,0,1 \\
+		0,1\,\pm\,0,09 \\
+    -0,1\,\pm\,0,09 \\
+		0,2\,\pm\,0,1 \\
+		1,7\,\pm\,0,2 \\
+		1,5\,\pm\,0,2 \\
+		0,3\,\pm\,0,1
 	\end{pmatrix}
 	\label{eq:rate5}
 \end{equation}

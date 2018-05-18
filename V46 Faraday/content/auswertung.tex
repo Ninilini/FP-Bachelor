@@ -1,7 +1,7 @@
 \section{Auswertung}
 \subsection{Bestimmung der maximalen Kraftflussdichte des Magnetfeldes}
 Zunächst wird das Maximum der Kraftflussdichte bestimmt. Dazu wurde entlang des Strahlengangs die Magnetfeldstärke gemessen. Diese
-Messwerte sind in Tabelle \ref{tab:B} und in Abbildung \ref{fig:B} dargestellt. Ebenfalls in der Abbildung dargestellt ist ein Fit
+Messwerte sind in Tabelle \ref{tab:B} und in Abbildung \ref{fig:B} dargestellt. Ebenfalls in der Abbildung dargestellt ist eine Regression
 der Form
 \begin{equation}
   B(z) = az^2 + bz + c \;,
@@ -51,7 +51,7 @@ als maximale Kraftflussdichte des Magnetfeldes. Diese entspricht der Kraftflussd
 \begin{figure}
   \centering
   \includegraphics{plots/plot_B.pdf}
-  \caption{Messwerte und Fit der Magnetfeldstärke entlang des Strahlengangs.}
+  \caption{Messwerte und Regression der Magnetfeldstärke entlang des Strahlengangs.}
   \label{fig:B}
 \end{figure}
 
@@ -133,28 +133,28 @@ Die Messwerte sind in den Tabellen \ref{tab:rein} - \ref{tab:GaAs2} aufgelistet 
 \end{table}
 
 Um die Faraday-Rotation der Leitungselektronen zu bekommen, werden die Differenzen zwischen den Messwerten der dotierten und der hochreinen
-Probe gebildet und jeweils ein linearer Fit der Form
+Probe gebildet und jeweils eine lineare Regression der Form
 \begin{equation}
   f(\lambda^2) = a\lambda^2 + b
 \end{equation}
 berechnet.
-Der Fit zur Probe mit $N = \SI{1.2e18}{cm^{-3}}$ ergibt
+Die Regression zur Probe mit $N = \SI{1.2e18}{cm^{-3}}$ ergibt
 \begin{align*}
   a &= \SI{8.8\pm9.3e12}{m^{-3}} \\
   b &= \SI{10\pm37}{m^{-1}}
 \end{align*}
-und der Fit zur Probe mit $N = \SI{2.8e18}{cm^{-3}}$ ergibt
+und die Regression zur Probe mit $N = \SI{2.8e18}{cm^{-3}}$ ergibt
 \begin{align*}
   a &= \SI{9.4\pm6.6e12}{m^{-3}} \\
   b &= \SI{13\pm26}{m^{-3}} \;.
 \end{align*}
-Die Differenzen der Messwerte und die Fits sind in Abbildung \ref{fig:GaAs2} dargestellt. Dabei wurden die Winkel ins Bogenmaß umgeregnet.
+Die Differenzen der Messwerte und die Regressionen sind in Abbildung \ref{fig:GaAs2} dargestellt. Dabei wurden die Winkel ins Bogenmaß umgeregnet.
 Durch Umstellen der Gleichung \eqref{eq:frei} ergibt sich für die effektive Masse der Leitungselektronen
 \begin{equation}
   m^* = \sqrt{\frac{\text{e}_0^3}{8\pii^2\epsilon_0\text{c}^3}\frac{NB}{n}\frac{1}{a}} \;,
 \end{equation}
-wobei $a$ der Parameter des Fits ist. Für den Brechungsindex für GaAs wurde $n = \num{3.354}$ angenommen, welcher dem Brechungsindex bei einer
-Wellenlänge von $\lambda = \SI{1.77114}{µm}$ entspricht\cite{n_GaAs}.
+wobei $a$ der Parameter der Regression ist. Für den Brechungsindex für GaAs wurde $n = \num{3.354}$ angenommen, welcher dem Brechungsindex bei einer
+Wellenlänge von $\lambda = \SI{1.77114}{µm}$ entspricht \cite{n_GaAs}.
 Damit ergeben sich die folgenden Werte für die effektiven Massen:
 \begin{align*}
   N = \SI{1.2e18}{cm^{-3}} &\text{:}\quad m^*= (\num{0.055\pm0.029})m_\text{e} \\
