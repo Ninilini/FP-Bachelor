@@ -1,0 +1,75 @@
+\section{Zielsetzung}
+In diesem Versuch soll die Molwärme von Kupfer bestimmt werden. Aus dieser wird
+dann die Debye-Temperatur bestimmt und mit dem Literaturwert verglichen.
+
+\section{Theorie}
+Zunächst werden drei Theorien zur Molwärme von Festkörpern erläutert und verglichen.
+\subsection{Die klassische Theorie}
+Nach der klassischen Physik können die Gitteratome eines Festkörpers in drei orthogonale
+Richtungen um ihre Ruhelage schwingen. Da es sich um harmonische Schwingungen handelt, sind
+dabei die mittlere kinetische Energie und die mittlere potentielle Energie gleich. Nach dem
+Äquipartitionstheorem erhält jedes Atom pro Freiheitsgrad die mittlere Wärmeenergie $\frac{1}{2}k_\text{B}T$,
+sodass sich pro Mol die Energie
+\begin{equation}
+  U = 3RT
+\end{equation}
+mit der allgemeinen Gaskonstante $R$ ergibt. Daraus folgt die spezifische Molwärme bei konstantem Volumen
+\begin{equation}
+  C_\text{V} = \left(\frac{\partial U}{\partial T}\right)_\text{V} = 3R \,.
+\end{equation}
+Diese ist materialunabhängig und ebenfalls unabhängig von der Temperatur, obwohl dies im Widerspruch zu experimentellen
+Ergebnissen steht. Nur bei hohen Temperaturen ($T \geq \theta_\text{D}$) nähert sich die spezifische Molwärme gemäß
+dem Dulong-Petitschen Gesetz dem Wert $3R$ an.
+
+\subsection{Das Einstein-Modell}
+Das Einstein-Modell berücksichtigt im Gegensatz zum klassischen Modell die quantenmechanische Energiequantelung. Allerdings
+wird angenommen, dass alle Atome mit der gleichen Frequenz schwingen und Energiebeträge abgeben und aufnehmen können, die einem
+Vielfachen von $\hbar\omega$ entsprechen.
+
+Mit der Boltzmann-Verteilung
+\begin{equation*}
+  W(n) = \exp\left( -\frac{n\hbar\omega}{k_\text{B}T} \right)
+\end{equation*}
+für die Wahrscheinlichkeit, dass ein Oszillator die Energie $n\hbar\omega$ hat, ergibt sich die mittlere Energie pro Atom
+\begin{equation}
+  \langle u \rangle_\text{Einstein} = \frac{\hbar\omega}{\exp(\hbar\omega/k_\text{B}T) - 1} < k_\text{B}T \,.
+\end{equation}
+Daraus folgt für die Molwärme:
+\begin{equation}
+  C_\text{V, Einstein} = 3R\frac{\hbar^2\omega^2}{k_\text{B}^2T^2}
+                          \frac{\exp(\hbar\omega/k_\text{B}T)}{\left[\exp(\hbar\omega/k_\text{B}T)\right]^2} \,.
+\end{equation}
+Diese erfüllt ebenfalls das Dulong-Petitsche Gesetz
+\begin{equation*}
+  \lim_{T\to\infty} C_\text{V, Einstein} = 3R\,.
+\end{equation*}
+Im Gegensatz zum klassischen Ansatz zeigt das Einstein-Modell die beobachtete Temperaturabhängigkeit. Allerdings weicht das
+Einstein-Modell bei tiefen Temperaturen dennoch von den experimentellen Ergebnissen ab, da entgegen der Annahme
+nicht nur Schwingungen einer Frequenz auftreten.
+
+\subsection{Das Debye-Modell}
+Das Debye-Modell berücksichtigt die spektrale Verteilung $Z(\omega)$ der Eigenschwingungen. Diese Verteilung kann bei einigen
+Kristallen allerdings sehr kompliziert sein und deshalb wird als Näherung angenommen, dass die Phasengeschwindigkeit
+unabhängig von der Frequenz und der Ausbreitungsrichtung der Welle im Kristall ist, sodass sich $Z(\omega)$ einfach berechnen lässt.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Erklärung Debye-Frequenz?!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Für die spezifische Molwärme ergibt sich schließlich
+\begin{equation}
+  C_\text{V, Debye} = 9R \left(\frac{T}{\theta_\text{D}}\right)^3 \int_0^{\theta_\text{D}/T} \frac{x^4\text{e}^x}{(\text{e}^x-1)^2}\,\text{d}x
+\end{equation}
+mit
+\begin{equation*}
+  x = \frac{\hbar\omega}{k_\text{B}T} \qquad \text{und} \qquad \frac{\theta_\text{D}}{T} = \frac{\hbar\omega_\text{D}}{k_\text{B}T}\,.
+\end{equation*}
+
+$\theta_\text{D}$ ist dabei die materialspezifische Debye-Temperatur. Auch im Debye-Modell gilt
+\begin{equation*}
+  \lim_{T\to\infty} C_\text{V, Debye} = 3R \,.
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tieftemperaturverhalten
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
