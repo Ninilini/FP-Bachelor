@@ -42,3 +42,14 @@ plt.legend(loc='best')
 plt.tight_layout()
 plt.savefig("plot_alpha.pdf")
 plt.close()
+
+mcu = 342
+Mcu = 63.546
+k = 140
+V = 7.092*10**(-6)
+dt, U, I, T1, T2 = np.loadtxt('data/data.txt', unpack = True)
+
+cp = (Mcu/mcu) * (U * I * dt)/(T2-T1)
+
+cv = cp - (9 * f(T2, m, b)**2 * k * V * T2)
+
