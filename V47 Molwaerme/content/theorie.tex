@@ -18,7 +18,7 @@ mit der allgemeinen Gaskonstante $R$ ergibt. Daraus folgt die spezifische Molwä
   C_\text{V} = \left(\frac{\partial U}{\partial T}\right)_\text{V} = 3R \,.
 \end{equation}
 Diese ist materialunabhängig und ebenfalls unabhängig von der Temperatur, obwohl dies im Widerspruch zu experimentellen
-Ergebnissen steht. Nur bei hohen Temperaturen ($T \geq \theta_\text{D}$) nähert sich die spezifische Molwärme gemäß
+Ergebnissen steht. Nur bei hohen Temperaturen ($T \gg \theta_\text{D}$) nähert sich die spezifische Molwärme gemäß
 dem Dulong-Petitschen Gesetz dem Wert $3R$ an.
 
 \subsection{Das Einstein-Modell}
@@ -50,13 +50,16 @@ nicht nur Schwingungen einer Frequenz auftreten.
 \subsection{Das Debye-Modell}
 Das Debye-Modell berücksichtigt die spektrale Verteilung $Z(\omega)$ der Eigenschwingungen. Diese Verteilung kann bei einigen
 Kristallen allerdings sehr kompliziert sein und deshalb wird als Näherung angenommen, dass die Phasengeschwindigkeit
-unabhängig von der Frequenz und der Ausbreitungsrichtung der Welle im Kristall ist, sodass sich $Z(\omega)$ einfach berechnen lässt.
+unabhängig von der Frequenz und der Ausbreitungsrichtung der Welle im Kristall ist, sodass sich $Z(\omega)$ einfacher berechnen lässt.
+Der Beitrag der Leitungselektronen wird ebenfalls vernachlässigt, spielt aber erst bei sehr niedrigen Temperaturen eine Rolle.
+Da die Anzahl der Eigenschwingungen eines endlichen Kristalls auf $3N_\text{L}$ begrenzt ist, existiert eine maximale Grenzfrequenz $\omega_\text{D}$,
+sodass
+\begin{equation}
+  \int_0^{\omega_\text{D}} Z(\omega)\text{d}\omega = 3N_\text{L}\,,
+\end{equation}
+wobei $N_\text{L}$ die Anzahl der Atome des Kristalls angibt.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Erklärung Debye-Frequenz?!
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Für die spezifische Molwärme ergibt sich schließlich
+Damit ergibt sich für die spezifische Molwärme schließlich
 \begin{equation}
   C_\text{V, Debye} = 9R \left(\frac{T}{\theta_\text{D}}\right)^3 \int_0^{\theta_\text{D}/T} \frac{x^4\text{e}^x}{(\text{e}^x-1)^2}\,\text{d}x
 \end{equation}
@@ -64,12 +67,12 @@ mit
 \begin{equation*}
   x = \frac{\hbar\omega}{k_\text{B}T} \qquad \text{und} \qquad \frac{\theta_\text{D}}{T} = \frac{\hbar\omega_\text{D}}{k_\text{B}T}\,.
 \end{equation*}
-
-$\theta_\text{D}$ ist dabei die materialspezifische Debye-Temperatur. Auch im Debye-Modell gilt
+$\theta_\text{D}$ ist dabei die materialspezifische Debye-Temperatur, die sich aus der Grenzfrequenz $\omega_\text{D}$ ergibt. Auch im Debye-Modell gilt
 \begin{equation*}
-  \lim_{T\to\infty} C_\text{V, Debye} = 3R \,.
+  \lim_{T\to\infty} C_\text{V, Debye} = 3R \,,
 \end{equation*}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Tieftemperaturverhalten
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+aber für tiefe Temperaturen $T\ll\theta_\text{D}$ ergibt sich
+\begin{equation*}
+  C_\text{V, Debye} \sim T^3\,.
+\end{equation*}
+Damit beschreibt das Debye-Modell die Molwärme bei tiefen Temperaturen deutlich besser als das Einstein-Modell, obwohl es immer noch eine Näherung ist.
