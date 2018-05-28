@@ -45,7 +45,7 @@ mcu = 342
 Mcu = 63.546
 k = 140
 V = 7.092*10**(-6)
-dt2, U2, I2, R12, R22, T12, T22 = np.loadtxt('data/data.txt', unpack = True)
+dt2, U2, I2, R12, R22, T12, T22, CPPPP = np.loadtxt('data/data.txt', unpack = True)
 dt = unumpy.uarray(dt2, 1)
 U = unumpy.uarray(U2, 0.01)
 I = unumpy.uarray(I2, 0.1)
