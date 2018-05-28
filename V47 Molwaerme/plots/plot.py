@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from uncertainties import ufloat, unumpy
 from uncertainties.unumpy import nominal_values as noms
+from uncertainties.unumpy import std_devs as err
 import scipy.integrate as int
 import scipy.constants as con
 from scipy.constants import physical_constants as pcon
@@ -85,9 +86,25 @@ cp:
 --------------------------
 ''',cp)
 
-cv = cp - (9 * f(T2, m, b)**2 * k * V * T2)
+cv = cp - (9 * (f(T2, m, b)*10**(-5))**2 * k * V * T2)
 
 print('''
 cv:
 --------------------------
 ''',cv)
+
+cpf = err(cp)
+cvf = err(cv)
+cp1 = noms(cp)
+cv1 = noms(cv)
+
+# plt.errorbar(noms(T2),cp1,yerr=cpf,fmt='bx',label='Werte für $C_{\mathrm{P}}$')
+plt.errorbar(noms(T2),cv1,yerr=cvf,fmt='rx',label='Werte für $C_{\mathrm{V}}$')
+plt.legend(loc='best')
+plt.tight_layout()
+plt.grid()
+plt.xlabel(r"$T$ in $\mathrm{K}$")
+plt.ylabel(r"$C_{\mathrm{P,V}}$ in $\mathrm{JK}^{-1}\mathrm{mol}^{-1}$")
+plt.tight_layout()
+plt.savefig("plots/plot_Cv.pdf")
+plt.close()
