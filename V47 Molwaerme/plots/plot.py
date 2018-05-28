@@ -23,24 +23,23 @@ b = params[1]
 dm = np.sqrt(cov[0][0])
 db = np.sqrt(cov[1][1])
 
+# x = np.linspace(70, 300, 1000)
+#
+# plt.plot(1/T, alpha, 'rx', label='Messwerte')
+# plt.plot(1/x, f(x, m, b), 'k-', label='Regressionsgerade')
+# plt.grid()
+# plt.xlabel(r"$T^{-1}$ in $\mathrm{K}^{-1}$")
+# plt.ylabel(r"$\alpha\cdot 10^{-6}$ in $\mathrm{K}^{-1}$")
+# plt.legend(loc='best')
+# plt.tight_layout()
+# plt.savefig("plots/plot_alpha.pdf")
+# plt.close()
+
 m = ufloat(m, dm)
 b = ufloat(b, db)
 
 print('m = ', m)
 print('b = ', b)
-
-
-x = np.linspace(70, 300, 1000)
-
-plt.plot(1/T, alpha, 'rx', label='Messwerte')
-plt.plot(1/x, noms(f(x, m, b)), 'k-', label='Regressionsgerade')
-plt.grid()
-plt.xlabel(r"$T^{-1}$ in $\mathrm{K}^{-1}$")
-plt.ylabel(r"$\alpha\cdot 10^{-6}$ in $\mathrm{K}^{-1}$")
-plt.legend(loc='best')
-plt.tight_layout()
-plt.savefig("plots/plot_alpha.pdf")
-plt.close()
 
 mcu = 342
 Mcu = 63.546
@@ -98,13 +97,40 @@ cvf = err(cv)
 cp1 = noms(cp)
 cv1 = noms(cv)
 
-# plt.errorbar(noms(T2),cp1,yerr=cpf,fmt='bx',label='Werte für $C_{\mathrm{P}}$')
-plt.errorbar(noms(T2),cv1,yerr=cvf,fmt='rx',label='Werte für $C_{\mathrm{V}}$')
-plt.legend(loc='best')
-plt.tight_layout()
-plt.grid()
-plt.xlabel(r"$T$ in $\mathrm{K}$")
-plt.ylabel(r"$C_{\mathrm{P,V}}$ in $\mathrm{JK}^{-1}\mathrm{mol}^{-1}$")
-plt.tight_layout()
-plt.savefig("plots/plot_Cv.pdf")
-plt.close()
+D1 = T2[1]*3.9
+D2 = T2[2]*3.1
+D3 = T2[3]*3
+D4 = T2[4]*2.2
+D5 = T2[5]*2.2
+D6 = T2[6]*2.7
+D7 = T2[7]*0
+D8 = T2[8]*3.6
+D9 = T2[9]*3.9
+D10 = T2[10]*4.0
+
+DM = 1/10 * (D1 + D2 + D3 + D4 + D5 + D6 + D7 + D8 + D9 + D10)
+
+print(D1)
+print(D2)
+print(D3)
+print(D4)
+print(D5)
+print(D6)
+print(D7)
+print(D8)
+print(D9)
+print(D10)
+
+print(DM)
+w = con.k/con.hbar * DM
+print(w)
+# # plt.errorbar(noms(T2),cp1,yerr=cpf,fmt='bx',label='Werte für $C_{\mathrm{P}}$')
+# plt.errorbar(noms(T2),cv1,yerr=cvf,fmt='rx',label='Werte für $C_{\mathrm{V}}$')
+# plt.legend(loc='best')
+# plt.tight_layout()
+# plt.grid()
+# plt.xlabel(r"$T$ in $\mathrm{K}$")
+# plt.ylabel(r"$C_{\mathrm{V}}$ in $\mathrm{JK}^{-1}\mathrm{mol}^{-1}$")
+# plt.tight_layout()
+# plt.savefig("plots/plot_Cv.pdf")
+# plt.close()

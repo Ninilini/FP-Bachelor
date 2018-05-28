@@ -1,9 +1,203 @@
 \section{Auswertung}
+\section{Fehlerrechnung}
+\label{sec:auswertung}
+Die Mittelwerte der für die Auswertung mehrfach gemessenen Größen sind
+gemäß der Gleichung
+\begin{equation}
+    \bar{x}=\frac{1}{n}\sum_{i=1}^n x_i
+    \label{eq:mittelwert}
+\end{equation}
+bestimmt. Die Standardabweichung des Mittelwertes ergibt sich dabei zu
+\begin{equation}
+    \mathup{\Delta}\bar{x}=\sqrt{\frac{1}{n(n-1)}\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}.
+    \label{eq:standardabweichung}
+\end{equation}
+Existiert eine Größe, die sich durch die Berechnung aus zwei Fehler behafteten Größen ergibt,
+so berechnet sich der Gesamtfehler mit Hilfe der Gaußschen Fehlerfortpflanzung zu
+\begin{equation}
+    \mathup{\Delta}f(x_1,x_2,...,x_n)=\sqrt{\left(\frac{\partial f}{\partial x_1}\mathup{\Delta}x_1\right)^2+\left(\frac{\partial f}{\partial x_2}\mathup{\Delta}x_2\right)^2+ \dotsb +\left(\frac{\partial f}{\partial x_n}\mathup{\Delta}x_n\right)^2}.
+    \label{eq:fehlerfortpflanzung}
+\end{equation}
+Die in der Auswertung berechneten Größen sind alle  auf die erste signifikante
+Stelle des Fehlers gerundet. Setzt sich eine Größe über mehrere Schritte aus
+anderen Größen zusammen, so wird erst am Ende gerundet, um Fehler zu vermeiden.
+% Zur Auswertung wird die Programmiersprache \texttt{python (Version 3.4.1)} mit
+% den Bibliothekserweiterungen \texttt{numpy}~\cite{numpy},
+% \texttt{scipy}~\cite{scipy} und \texttt{matplotlib}~\cite{matplotlib} zur
+% Erstellung der Grafiken und linearen Regressionen verwendet.
 
+\subsection{Bestimmung der Molwärme von Kupfer}
+In der folgenden Auswertung werden die Fehler von Größen immer durch
+ein~$\upDelta$ kenntlich gemacht. Für die benötigten Zeit-, Temperatur- und
+Energiedifferenzen wird ein~$\delta$ verwendet.\\
+\newline
+Die molare Wärmekapazität~$C$ eines Stoffes berechnet sich im Experiment aus
+dem Differenzenquotienten
+\begin{equation}
+  C=\frac{\delta Q}{m \cdot \delta T},
+\end{equation}
+Durch die Heizwicklung wird der Kupferprobe kontinuierlich eine elektrische Energie~$\delta E$
+zugeführt, sodass eine Wärmemenge
+\begin{equation}
+  \delta Q = UI\delta t
+\end{equation}
+aufgenommen wird. Dabei entsprechen $U$ der Spannung und $I$ dem Strom der Heizwicklung.
+Das gemessene Zeitintervall beträgt $\delta t=\SI{300(1)}{\second}$ beziehungsweise $\delta t=\SI{310(1)}{\second}$.
+Der angegebene Fehler resultiert aus der Ablesegenauigkeit des verwendeten Zeitmessers. Die benötigte
+Temperaturdifferenz~$\delta T$ wird aus den gemessenen Widerständen~$R_1 \text{und}\, R_2$ bestimmmt.
+Die zugehörige Umrechnungsformel lautet
+\begin{gather}
+  T=\SI{0.00134}{\kelvin\per\ohm\squared}R^2+\SI{2.296}{\kelvin\per\ohm}R+\SI{30.13}{\kelvin} \\
+  \shortintertext{mit dem Fehler}
+  \upDelta T=\left(\SI{0.00268}{\kelvin\per\ohm}+\SI{2.296}{\kelvin}\right)\SI{}{\per\ohm}\upDelta R
+\end{gather}
+und ist~\cite{anleitung} entnommen. Es soll die Wärmekapazität bei konstantem
+Volumen~$C_{\mathrm{V}}$ berechnet werden. Da temperaturabhängige Messungen bei
+konstantem Volumen an einem Festkörper jedoch schwer durchzuführen sind, wird
+die Messung stattdessen bei konstantem Druck durchgeführt.
+Die auf die Stoffmenge~$n=\sfrac{m}{M}$ bezogene molare Wärmekapazität bei
+konstantem Druck~$C_{\mathrm{P}}$ ergibt sich zu
+\begin{gather}
+  C_{\mathrm{P}}=\frac{M}{m}\frac{UI\delta t}{\delta T}\\
+  \intertext{mit dem Fehler}
+  \upDelta C_{\mathrm{P}}=\frac{M}{m}\sqrt{\left(\frac{I\delta t}{\delta T}\upDelta U\right)^2+\left(\frac{U\delta t}{\delta T}\upDelta I\right)^2+\left(\frac{UI}{\delta T}\upDelta(\delta t)\right)^2+\left(\frac{UI\delta t}{(\delta T)^2}\upDelta(\delta T)\right)^2}.
+\end{gather}
+Hierbei ist~$M=\SI{63.546}{\gram\per\mol}$~\cite{mathematica} die molare Masse
+von Kupfer und~$m=\SI{0.342}{\kilo\gram}$~\cite{anleitung} die Masse der Probe. Die
+Umrechnung von~$C_{\mathrm{P}}$ in~$C_{\mathrm{V}}$ erfolgt mit Hilfe der
+Gleichung
+\begin{gather}
+  C_{\mathrm{V}}=C_{\mathrm{P}}-9\alpha^2\kappa V_0T\label{eq:Cp2Cv} \\
+  \intertext{und hat den Fehler}
+  \upDelta C_{\mathrm{V}}=\sqrt{(\upDelta C_{\mathrm{P}})^2+(18\alpha\kappa V_0T\upDelta\alpha)^2+(9\alpha^2\kappa V_0\upDelta T)^2}.
+\end{gather}
+Das Kompressionsmodul~$\kappa$ von Kupfer beträgt nach~\cite{mathematica}
+\begin{equation}
+  \kappa=\SI{140}{\giga\newton\per\metre\squared}.
+\end{equation}
+Das molare Volumen~$V_0$ der verwendeten Probe berechnet sich mit Hilfe der
+Avogadro-Konstanten~$N_{\mathrm{A}}=\SI{6.022e23}{\per\mol}$ aus der
+Dichte~$\rho=\SI{8.960}{\gram\per\centi\metre\cubed}$~\cite{mathematica} und der
+molaren Masse~$M$ zu
+\begin{equation}
+  V_0=\frac{M}{\rho}=\SI{7.092e-6}{\metre\cubed\per\mol}.
+\end{equation}
+$\alpha$ ist der temperaturabhängige lineare Ausdehnungskoeffizient, für den in
+Tabelle~\ref{tab:ausdehnungskoeffizient} einige Werte bei verschiedenen
+Temperaturen angegeben sind.
 
-% \begin{figure}
-%   \centering
-%   \includegraphics{plots/plot.pdf}
-%   \caption{Plot.}
-%   \label{fig:plot}
-% \end{figure}
+\begin{table}[htb]
+    \centering
+    \caption{Linearer Ausdehnungskoeffizient~$\alpha$ von Kupfer in Abhängigkeit
+    der Temperatur~$T$ \cite{anleitung}.}
+    \begin{tabular}{S[table-format = 3.0]
+                    S[table-format = 2.2] |
+                    S[table-format = 3.0]
+                    S[table-format = 2.2] }
+        \toprule
+        {$T$ in \si{\kelvin}} & {$\alpha\cdot 10^{-6}$ in \si{\per\kelvin}} & {$T$ in \si{\kelvin}} & {$\alpha\cdot 10^{-6}$ in \si{\per\kelvin}} \\
+        \midrule
+         70 &  7.00 & 190 & 14.75 \\
+         80 &  8.50 & 200 & 14.95 \\
+         90 &  9.75 & 210 & 15.20 \\
+        100 & 10.70 & 220 & 15.40 \\
+        110 & 11.50 & 230 & 15.60 \\
+        120 & 12.10 & 240 & 15.75 \\
+        130 & 12.65 & 250 & 15.90 \\
+        140 & 13.15 & 260 & 16.10 \\
+        150 & 13.60 & 270 & 16.25 \\
+        160 & 13.90 & 280 & 16.35 \\
+        170 & 14.25 & 290 & 16.50 \\
+        180 & 14.50 & 300 & 16.65 \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:ausdehnungskoeffizient}
+\end{table}
+
+Da $\alpha$ von Festkörpern eine~$T^{-1}$-Abhängigkeit besitzt, lässt sich ein linearer Fit der Form
+\begin{gather}
+  \alpha(T)=m\frac{1}{T}+b \\
+  \shortintertext{mit dem Fehler}
+  \upDelta\alpha(T,\upDelta T)=\sqrt{\left(\frac{1}{T}\upDelta m\right)^2+\left(\frac{m}{T^2}\upDelta T\right)^2+(\upDelta b)^2}
+\end{gather}
+durchführen. Dies dient zur Bestimmung des Ausdehnungskoeffizienten zwischen den gegebenen Stützstellen.
+Der Fit ist in Abbildung~\ref{fig:plot_alpha} dargestellt\\
+\newline
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/plot_alpha.pdf}
+    \caption{Linearer Ausdehnungskoeffizient~$\alpha$ von Kupfer aufgetragen
+    gegen die inverse Temperatur.}
+    \label{fig:plot_alpha}
+\end{figure}
+und liefert für die Parameter~$m$ und~$b$ die Werte
+\begin{gather}
+  m = \SI{-873(4)e-6}{} \\
+  \shortintertext{und}
+  b = \SI{19.41(3)e-6}{\per\kelvin}.
+\end{gather}
+% Tabelle~\ref{tab:Molwaerme} zeigt zusammenfassend alle Messdaten
+% sowie die zugehörigen berechneten Größen.
+In Abbildung~\ref{fig:plot_Cv} sind
+die berechneten Werte für~$C_{\mathrm{V}}$ samt Fehlerbalken gegen die Temperatur aufgetragen dargestellt.\\
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{plots/plot_Cv.pdf}
+    \caption{Berechnete Werte für~$C_{\mathrm{P}}$ und~$C_{\mathrm{V}}$
+    aufgetragen gegen die Temperatur. Im Bereich zwischen~\SI{100}{\kelvin}
+    und~\SI{170}{\kelvin} ist der Verlauf annähernd linear.}
+    \label{fig:plot_Cv}
+\end{figure}
+
+\subsection{Bestimmung der Debye-Temperatur}
+Ziel des Versuchs ist es zuletzt die Debye-Temperatur~$\theta_{\mathrm{D}}$ der Kupferprobe zu
+bestimmen. Dafür werden aus Tabelle~1 in~\cite{anleitung} die Quotienten aus der
+Debye-Temperatur und der gemessenen Temperatur~$T$ abgelesen und durch
+Multiplikation mit~$T$ wird anschließend die Debye-Temperatur bestimmt. Es werden nur
+Werte~$C_{\mathrm{V}}$ betrachtet, bei denen für die Temperatur gilt~$T<\SI{170}{\kelvin}$.
+Die errechneten Werte für~$\theta_{\mathrm{D}}$ sind in
+Tabelle~\ref{tab:debyetemperatur} zusammengefasst. Als Mittelwert ergibt sich
+mit Formel~\eqref{eq:mittelwert} und Formel~\eqref{eq:fehlerfortpflanzung}
+\begin{equation}
+  \theta_{\mathrm{D},1}=\SI{366.45(23)}{\kelvin}.
+\end{equation}
+
+\begin{table}[H]
+    \centering
+    \caption{Gemessene und berechnete physikalische Größen zur Bestimmung der
+    Debye-Temperatur~$\theta_{\mathrm{D}}$ einer Kupferprobe.}
+    \begin{tabular}{S[table-format=3.1(1)]
+                    S[table-format=2.1(1)]
+                    S
+                    S[table-format=3.1(1)]}
+        \toprule
+        {$T_2$ in \si{\kelvin}} & {$C_{\mathrm{V}}$ in \si{\joule\per\mol\per\kelvin}} & {$\frac{\theta_{\mathrm{D}}}{T}$} & {$\theta_{\mathrm{D}}$ in \si{\per\kelvin}} \\
+        \midrule
+         91.4(2) & 12.8(5) & 3.9 & 356.6(9) \\
+         98.3(2) & 16.1(8) & 3.1 & 304.8(7) \\
+        106.6(2) & 16.7(8) & 3.0 & 319.9(7) \\
+        112.6(2) & 20.0(10) & 2.2 & 247.7(5) \\
+        119.6(2) & 19.9(10) & 2.2 & 263.0(5) \\
+        129.2(2) & 17.6(8) & 2.7 & 348.7(7) \\
+        137.4(2) & 26.2(10) & 0.0 & 0.0(0) \\
+        147.3(2) & 14.1(5) & 3.6 & 530.3(9) \\
+        158.3(2) & 12.8(5) & 3.9 & 617.2(10) \\
+        169.0(2) & 12.7(5) & 4.0 & 676.1(10) \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:debyetemperatur}
+\end{table}
+
+Ein alternativer Ansatz ermöglicht die Berechnung der Debye-Temperatur aus
+Forderung~\eqref{eq:konv}. Es ergibt sich
+\begin{equation}
+  \theta_{\mathrm{D},2}=\frac{\hbar}{k_{\mathrm{B}}}\sqrt[3]{\frac{18\pi^2N_A\rho}{M}\left(v_{\mathrm{long}}^{-3}+2v_{\mathrm{trans}}^{-3}\right)^{-1}}=\SI{332,5}{\kelvin},
+\end{equation}
+wobei~$v_{\mathrm{long}}=\SI{4.7}{\kilo\metre\per\second}$ und $v_{\mathrm{trans}}=\SI{2.26}{\kilo\metre\per\second}$ verwendet wurde.
+Für die Debye-Frequenzen ergeben sich die Werte
+\begin{align}
+  \omega_{\mathrm{D},1}&=\frac{k_{\mathrm{B}}}{\hbar}\theta_{\mathrm{D},1}=\SI{47.98(3)}{\tera\hertz} \\
+  \shortintertext{und}
+  \omega_{\mathrm{D},2}&=\frac{k_{\mathrm{B}}}{\hbar}\theta_{\mathrm{D},2}=\SI{43.53}{\tera\hertz}.
+\end{align}
