@@ -13,7 +13,7 @@ all: Protokoll.pdf
 # hier Python-Skripte:
 plots: plots/plot.py matplotlibrc header-matplotlib.tex | data
 	@echo 'Python-Plots:'
-	TEXINPUTS="$(call translate,$(pwd):)" python plots/plot.py
+	TEXINPUTS="$(call translate,$(pwd):)" python3 plots/plot.py
 	@echo
 
 again:
@@ -39,7 +39,7 @@ tables:
 
 plots/plot.pdf: plots/plot.py matplotlibrc header-matplotlib.tex data
 	@echo 'Python-Plots:'
-	TEXINPUTS="$(call translate,$(pwd):)" python plots/plot.py
+	TEXINPUTS="$(call translate,$(pwd):)" python3 plots/plot.py
 	@echo
 
 .DELETE_ON_ERROR:
