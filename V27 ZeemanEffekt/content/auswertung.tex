@@ -1,6 +1,8 @@
 \section{Auswertung}
 
 \subsection{Eichung des Elektromagneten}
+Zu Beginn muss der verwendete Elektromagnet geeicht werden. Dazu wird die Magnetfeldstärke abhängig von der eingestellten Stromstärke vermessen. Aufgrund der Hysterese wird die Magnetfeldstärke
+bei steigendem und bei fallendem Strom gemessen. Die Messwerte sind in Tabelle \ref{tab:B} und in Abbildung \ref{fig:plot} dargestellt.
 \begin{table}
   \centering
   \caption{Messwerte der Magnetfeldstärke abhängig von der Stromstärke.}
@@ -32,26 +34,65 @@
   \end{tabular}
 \end{table}
 
-lineare Regression der Form
+Eine lineare Regression der Messwerte
 \begin{equation}
   B(I) = aI + b
 \end{equation}
-ergibt
+ist ebenfalls in Abbildung \ref{fig:plot} dargestellt und ergibt die Parameter
 \begin{align*}
   a &= \SI{57.9 \pm 0.4}{\frac{mT}{A}} \\
-  b &= \SI{18 \pm 4}{mT}
+  b &= \SI{18 \pm 4}{mT}\,.
 \end{align*}
-
+Diese Funktion wird im Folgenden verwendet, um die Magnetfeldstärke bei den einzelnen Messreihen zu berechnen.
 
 \begin{figure}
   \centering
   \includegraphics{plots/plot.pdf}
-  \caption{Plot.}
+  \caption{Magnetfeldstärke abhängig von der Stromstärke.}
   \label{fig:plot}
 \end{figure}
 
 \subsection{Messung der Landé-Faktoren}
+Zur Bestimmung der Landé-Faktoren wird die Verschiebung $\symup{\delta}$ der Wellenlänge in die entsprechende Energiedifferenz $\upD E$ umgerechnet:
+\begin{align}
+  |\upD E| &= \biggl|\frac{\partial E}{\partial\lambda}\biggr|\symup{\delta}\lambda \\
+          &= \frac{\symup{ch}}{\lambda^2}\symup{\delta}\lambda \,.
+  \label{eq:dE}
+\end{align}
+Der Landé-Faktor ergibt sich aus den Gleichungen \eqref{eq:dE_norm} und \eqref{eq:dE}:
+\begin{align}
+  g &= \frac{|\upD E|}{\mu_\text{B} B} \\
+    &= \frac{\symup{ch}\cdot\symup{\delta}\lambda}{\lambda^2\mu_\text{B}B}\,.
+\end{align}
+Die Wellenlängenverschiebung $\symup{\delta}\lambda$ ergibt sich aus den Abständen der aufgenommenen Spektrallinien:
+\begin{equation}
+  \symup{\delta}\lambda = \frac{1}{2}\frac{\symup{\delta}s}{\upD s}\upD \lambda_\text{D}\,,
+  \label{eq:versch}
+\end{equation}
+wobei $\upD s$ der Abstand zwischen den Spektrallinien ohne äußeres Magnetfeld, $\symup{\delta} s$ der Abstand zwischen den aufgespaltenen Linien
+im Magnetfeld und $\upD\lambda_\text{D}$ das Dispersionsgebiet ist.
+Das Dispersionsgebiet ergibt sich aus Formel % hier Referenz einfügen
+und ist für die beiden betrachteten Linien in Tabelle \ref{tab:disp} dargestellt.
+Zur Bestimmung der Abstände $\upD s$ und $\symup{\delta}s$ aus den Fotos wurden mit einem Grafikprogramm Linien durch die Intensitätsmaxima gezeichnet
+und dann die Abstände zwischen den Linien in Pixeln bestimmt.
 
+\begin{table}[h]
+  \centering
+  \caption{Wellenlängen und Dispersionsgebiet der untersuchten Linien.}
+  \label{tab:disp}
+  \begin{tabular}{c S[table-format=3.1] S[table-format=2.2]}
+    \toprule
+    Farbe & {$\lambda\:/\:\si{nm}$} & {$\upD\lambda_\text{D}\:/\:\si{pm}$} \\
+    \midrule
+    rot  & 643.8 & 48.91 \\
+    blau & 480.0   & 26.95 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+%
+\ \\
+Zunächst wurden die Landé-Faktoren der roten Linie bestimmt. Bei der $\pi$-Linie zeigt sich, dass es keine Zeeman-Aufspaltung gibt, wie in Abbildung \ref{fig:r_pi} zu sehen ist. Dies deutet
+darauf hin, dass der Landé-Faktor für die rote $\pi$-Linie 0 ist.
 \begin{figure}
   \centering
   \begin{subfigure}{0.48\textwidth}
@@ -64,26 +105,30 @@ ergibt
     \includegraphics[width=\textwidth]{graphics/aufnahmen/IMG_1630.jpg}
     \caption{Aufnahme mit Magnetfeld.}
   \end{subfigure}
-  \caption{rote $\pi$-Linie.}
+  \caption{Spektrallinien der roten $\pi$-Linie.}
   \label{fig:r_pi}
 \end{figure}
+
+Die Messungen der roten $\sigma$-Linie ergeben die Bilder \ref{fig:r_sigma} und \ref{fig:r_sigma_B}. Die gemessenen Abstände, die nach \eqref{eq:versch} berechnete Verschiebung
+und die daraus folgenden Landé-Faktoren sind in Tabelle \ref{tab:r_sigma} dargestellt. Die verwendete Magnetfeldstärke ist $\SI{597 \pm 6}{mT}$ und es ergibt sich der mittlere
+Landé-Faktor $g = \num{0.981 \pm  0.009}$.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.95\textwidth]{graphics/auswertung/IMG_1627.png}
-  \caption{rote $\sigma$-Linie ohne Magnetfeld.}
-  \label{}
+  \caption{Rote $\sigma$-Linie ohne Magnetfeld.}
+  \label{fig:r_sigma}
 \end{figure}
 \begin{figure}
   \centering
   \includegraphics[width=0.95\textwidth]{graphics/auswertung/IMG_1632.png}
-  \caption{rote $\sigma$-Linie mit Magnetfeld.}
-  \label{}
+  \caption{Rote $\sigma$-Linie mit Magnetfeld.}
+  \label{fig:r_sigma_B}
 \end{figure}
 
 \begin{table}
   \centering
-  \caption{rote $\sigma$-Linie.}
+  \caption{Messwerte der roten $\sigma$-Linie.}
   \label{tab:r_sigma}
   \begin{tabular}{S[table-format=3] S[table-format=3] S[table-format=2.3] S[table-format=1.3] @{${}\pm{}$} S[table-format=1.3]}
     \toprule
@@ -101,27 +146,32 @@ ergibt
     \bottomrule
   \end{tabular}
 \end{table}
+%
+\ \\
+Bei der blauen $\pi$-Linie und der blauen $\sigma$-Linie wird analog verfahren. Die $\pi$-Linie ergibt die
+Bilder \ref{fig:b_pi} und \ref{fig:b_pi_B} und die Messwerte in Tabelle \ref{tab:b_pi}. Gemessen wurde bei einem
+Magnetfeld von $\SI{1002 \pm 8}{mT}$ und für den Landé-Faktor ergibt sich der Mittelwert $g = \num{0.525 \pm 0.004}$.
 
-rot sigma: $\num{0.981 \pm  0.009}$
-Magnetfeld: $\SI{597 \pm 6}{mT}$
+Die Bilder \ref{fig:b_sigma} und \ref{fig:b_sigma_B} der $\sigma$-Linie ergeben die Messwerte aus Tabelle \ref{tab:b_sigma} bei
+einem Magnetfeld von $\SI{365 \pm 5}{mT}$. Es ergibt sich der Faktor $g = \num{1.39  \pm  0.02}$.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.95\textwidth]{graphics/auswertung/IMG_1635.png}
-  \caption{blaue $\pi$-Linie ohne Magnetfeld.}
-  \label{}
+  \caption{Blaue $\pi$-Linie ohne Magnetfeld.}
+  \label{fig:b_pi}
 \end{figure}
 \begin{figure}
   \centering
   \includegraphics[width=0.95\textwidth]{graphics/auswertung/IMG_1644.png}
-  \caption{blaue $\pi$-Linie mit Magnetfeld.}
-  \label{}
+  \caption{Blaue $\pi$-Linie mit Magnetfeld.}
+  \label{fig:b_pi_B}
 \end{figure}
 
 \begin{table}
   \centering
-  \caption{blaue $\pi$-Linie.}
-  \label{tab:r_sigma}
+  \caption{Messwerte der blauen $\pi$-Linie.}
+  \label{tab:b_pi}
   \begin{tabular}{S[table-format=3] S[table-format=3] S[table-format=2.3] S[table-format=1.3] @{${}\pm{}$} S[table-format=1.3]}
     \toprule
     {$\upD s \:/\: $px} & {$\symup{\delta} s \:/\: $px} & {$\symup{\delta}\lambda \:/\: $pm} & \multicolumn{2}{c}{Landé-Faktor $g$} \\
@@ -142,26 +192,24 @@ Magnetfeld: $\SI{597 \pm 6}{mT}$
   \end{tabular}
 \end{table}
 
-blau pi: $\num{0.525 \pm 0.004}$
-Magnetfeld: $\SI{1002 \pm 8}{mT}$
 
 \begin{figure}
   \centering
   \includegraphics[width=0.95\textwidth]{graphics/auswertung/IMG_1637.png}
-  \caption{blaue $\sigma$-Linie ohne Magnetfeld.}
-  \label{}
+  \caption{Blaue $\sigma$-Linie ohne Magnetfeld.}
+  \label{fig:b_sigma}
 \end{figure}
 \begin{figure}
   \centering
   \includegraphics[width=0.95\textwidth]{graphics/auswertung/IMG_1641.png}
-  \caption{blaue $\sigma$-Linie mit Magnetfeld.}
-  \label{}
+  \caption{Blaue $\sigma$-Linie mit Magnetfeld.}
+  \label{fig:b_sigma_B}
 \end{figure}
 
 \begin{table}
   \centering
-  \caption{blaue $\sigma$-Linie.}
-  \label{tab:r_sigma}
+  \caption{Messwerte der blauen $\sigma$-Linie.}
+  \label{tab:b_sigma}
   \begin{tabular}{S[table-format=3] S[table-format=3] S[table-format=2.3] S[table-format=1.3] @{${}\pm{}$} S[table-format=1.3]}
     \toprule
     {$\upD s \:/\: $px} & {$\symup{\delta} s \:/\: $px} & {$\symup{\delta}\lambda \:/\: $pm} & \multicolumn{2}{c}{Landé-Faktor $g$} \\
@@ -181,6 +229,3 @@ Magnetfeld: $\SI{1002 \pm 8}{mT}$
     \bottomrule
   \end{tabular}
 \end{table}
-
-blau sigma: $\num{1.39  \pm  0.02}$
-Magnetfeld: $\SI{365 \pm 5}{mT}$
