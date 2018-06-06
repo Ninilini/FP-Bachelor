@@ -1,5 +1,46 @@
 \section{Auswertung}
 
+\begin{table}
+  \centering
+  \caption{Messwerte der Magnetfeldstärke abhängig von der Stromstärke.}
+  \label{tab:B}
+  \begin{tabular}{S[table-format=2] S[table-format=3] S[table-format=3]}
+    \toprule
+    {$I$ / A} &  {$B$ / mT} & {$B$ / mT} \\
+    {} & {(steigend)} & {(fallend)} \\
+    \midrule
+    0 &    4 &     5 \\
+    1 &   71 &   74 \\
+    2 &  129 &  131 \\
+    3 &  195 &  179 \\
+    4 &  253 &  240 \\
+    5 &  307 &  308 \\
+    6 &  368 &  370 \\
+    7 &  428 &  420 \\
+    9 &  556 &  555 \\
+    8 &  488 &  472 \\
+    10 & 614 &  609 \\
+    11 & 661 &  668 \\
+    12 & 723 &  730 \\
+    13 & 777 &  779 \\
+    14 & 830 &  841 \\
+    15 & 872 &  888 \\
+    16 & 948 &  923 \\
+    17 & 972 &  972 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+lineare Regression der Form
+\begin{equation}
+  B(I) = aI + b
+\end{equation}
+ergibt
+\begin{align*}
+  a &= \SI{57.9 \pm 0.4}{\frac{mT}{A}} \\
+  b &= \SI{18 \pm 4}{mT}
+\end{align*}
+
 
 \begin{figure}
   \centering
