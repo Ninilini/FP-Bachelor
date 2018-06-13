@@ -1,5 +1,41 @@
 \section{Einleitung}
+Ziel des Versuchs ist die Messung der charakteristischen Lebensdauer von Myonen, indem Individuallebensdauern
+einzelner Myonen gemessen werden.
 
 \section{Theorie}
+\subsection{Elementarteilchen nach dem Standardmodell}
+Nach dem Standardmodell gibt es zwei verschiedene Elementarteilchen, die Quarks und die Leptonen. Beide lassen sich in
+drei Generationen einteilen. Quarks unterliegen der starken Wechselwirkung, während Leptonen nur der schwachen Wechselwirkung
+unterliegen. Leptonen sind Fermionen, also Spin-$\frac{1}{2}$-Teilchen, die der Fermi-Dirac-Statistik folgen.
+Die drei Generationen der Leptonen unterscheiden sich durch ihre Masse und haben eine unterschiedliche Lebensdauer.
+Elektronen gehören zur ersten Leptonen-Generation, während die hier betrachteten Myonen zur zweiten Generation gehören und in etwa
+die $\num{206.77}$-fache Masse der Elektronen besitzen. Im Gegensatz zu Elektronen sind Myonen (und Tauonen) nicht stabil, sondern
+haben eine endliche Lebensdauer.
 
-\cite{anleitung}
+Die hier betrachteten Myonen entstehen in der höheren Erdatmosphäre. Zunächst treffen hochenergetische Protonen aus der Höhenstrahlung
+auf Atomkerne der Luftmoleküle und erzeugen Pionen. Diese haben nur eine sehr kurze Lebensdauer und zerfallen dann in Myonen:
+\begin{align*}
+  \uppi^+ &\to \upmu^+ + \upnu_{\upmu} \\
+  \uppi^- &\to \upmu^- + \bar{\upnu}_{\upmu}\,.
+\end{align*}
+Da die Lebensdauer der Myonen deutlich größer ist und die Myonen sich nahezu mit Lichtgeschwindigkeit bewegen, gelangen diese
+bis zur Erdoberfläche und können dort in einem Szintillator detektiert werden.
+
+In der Szintillatormaterie wechselwirken die Myonen mit den Molekülen und geben dabei mehrere MeV ihrer kinetischen Energie in kleinen
+Bruchteilen an die Moleküle ab. Diese werden dadurch angeregt und fallen nach einer Weile wieder in ihren Grundzustand zurück, wobei
+sie ein Photon aussenden. Bei Eintreffen eines Myons entsteht also eine große Anzahl Photonen mit Energie im Bereich des sichtbaren
+Lichts. Einige Myonen haben eine so geringe Energie, dass sie im Szintillator komplett abgebremst werden und dort nach einer Weile
+zerfallen. Die Myonen zerfallen folgendermaßen in Elektronen und Neutrinos:
+\begin{equation*}
+  \upmu^- \to \symup{e}^- + \bar{\upnu}_\text{e} + \upnu_{\upmu} \,.
+\end{equation*}
+Das entsprechende Antiteilchen, das Antimyon, verhält sich genauso wie das Myon und zerfällt entsprechend in ein Positron und Neutrinos:
+\begin{equation*}
+  \upmu^+ \to \symup{e}^+ + \upnu_\text{e} + \bar{\upnu}_{\upmu} \,.
+\end{equation*}
+Die entstehenden Elektronen und Positronen erzeugen ebenfalls einen Lichtblitz im Szintillator, sodass der zeitliche Abstand zwischen
+den beiden Lichtblitzen der individuellen Lebensdauer des detektierten Myons entspricht.
+
+\subsection{Bestimmung der mittleren Lebensdauer von Elementarteilchen}
+Da es sich beim Zerfall des Myons um einen statistischen Prozess handelt, besitzen einzelne Myonen unterschiedliche individuelle Lebensdauern,
+sodass eine allgemeinere Definition der Lebensdauer nötig ist, die mittlere Lebensdauer.
