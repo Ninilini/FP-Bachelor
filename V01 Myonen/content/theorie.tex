@@ -4,6 +4,7 @@ einzelner Myonen gemessen werden.
 
 \section{Theorie}
 \subsection{Elementarteilchen nach dem Standardmodell}
+\label{sec:1}
 Nach dem Standardmodell gibt es zwei verschiedene Elementarteilchen, die Quarks und die Leptonen. Beide lassen sich in
 drei Generationen einteilen. Quarks unterliegen der starken Wechselwirkung, während Leptonen nur der schwachen Wechselwirkung
 unterliegen. Leptonen sind Fermionen, also Spin-$\frac{1}{2}$-Teilchen, die der Fermi-Dirac-Statistik folgen.
@@ -38,4 +39,28 @@ den beiden Lichtblitzen der individuellen Lebensdauer des detektierten Myons ent
 
 \subsection{Bestimmung der mittleren Lebensdauer von Elementarteilchen}
 Da es sich beim Zerfall des Myons um einen statistischen Prozess handelt, besitzen einzelne Myonen unterschiedliche individuelle Lebensdauern,
-sodass eine allgemeinere Definition der Lebensdauer nötig ist, die mittlere Lebensdauer.
+sodass eine allgemeinere Definition der Lebensdauer nötig ist, die mittlere Lebensdauer. Da die Zerfälle der einzelnen Teilchen unabhängig voneinander sind,
+ergibt sich bei einer Gesamtteilchenzahl $N$ für die Anzahl $\symup{d}N$ der Teilchen, die in der Zeit $\symup{d}t$ zerfallen
+\begin{equation}
+  \symup{d}N = -N\symup{d}W = -\lambda N\symup{d}t \,,
+\end{equation}
+wobei $\symup{d}W = \lambda\symup{d}t$ die Zerfallswahrscheinlichkeit eines einzelnen Teilchens im Zeitintervall $\symup{d}t$ ist und $\lambda$ die Zerfallskonstante ist.
+Für eine sehr große Teilchenzahl $N$ kann dieser Zusammenhang näherungsweise integriert werden:
+\begin{equation}
+  \frac{N(t)}{N_0} = \text{e}^{-\lambda t} \,.
+\end{equation}
+Daraus ergibt sich die exponentielle Verteilungsfunktion der Lebensdauer $t$:
+\begin{equation}
+  \frac{\symup{d}N(t)}{N_0} = \lambda\text{e}^{-\lambda t}\symup{d}t\,.
+  \label{eq:verteilung}
+\end{equation}
+Die mittlere Lebensdauer ergibt sich als Mittelwert aus allen möglichen Lebensdauern gewichtet mit der Verteilungsfunktion. Dies entspricht dem Erwartungswert
+\begin{equation}
+  \text{E}x := \int_{-\infty}^\infty xf(x)\symup{d}x
+\end{equation}
+der Verteilungsfunktion \eqref{eq:verteilung}.
+Es ergibt sich:
+\begin{equation}
+  \tau = \int_{-\infty}^\infty \lambda t \text{e}^{-\lambda t} \symup{d}t = \frac{1}{\lambda} \,,
+\end{equation}
+die mittlere Lebensdauer $\tau$ entspricht also der inversen Zerfallskonstante $\lambda$.
