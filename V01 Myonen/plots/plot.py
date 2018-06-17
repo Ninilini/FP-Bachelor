@@ -12,82 +12,56 @@ from uncertainties.unumpy import nominal_values as noms
 from uncertainties.unumpy import std_devs as sdevs
 import scipy.constants as con
 from scipy.constants import physical_constants as pcon
-#Table Funktion
-dummy = ufloat(69,42)
-dummyarray = np.array([dummy,dummy*6.626])
-udummyarray = unp.uarray([4], [5*con.pi])
 
-#data1 = [a,b,c,d,e]
-#p1 = {'name':'tabelle1.tex','data':data1}
-#table(**p1)
-def table(name, data):
-	j=0
-	i=0
-	f = [0,0,0,0,0,0,0,0,0,0,0,0,0]
-	for i in range(len(data)):
-		if(type(data[i][0]) == type(dummy) or type(data[i][0]) == type(dummyarray[1]) or type(data) == type(udummyarray)):
-			f[i] = True
-		else:
-			f[i] = False
-	print(f)
-	output = open(name, 'w')
-	output.write(r'\begin{table}[h]' + '\n' + r'\centering' + '\n' + r'\caption{CAPTION}' + '\n' +r'\sisetup{%uncertainty-seperator = {\,},'+'\n'+r'table-number-alignment = center,'+'\n'+'table-unit-alignment = center,'+'\n'+'%table-figures-integer = 1,'+'\n'+'%table-figures-decimal = 1,'+'\n'+'table-auto-round = true'+'\n'+'}'+'\n'+ r'\begin{tabular}{ ')
-	for i in range(len(data)):
-		if(f[i]):
-			output.write(r'S[table-format= 3.1]'+'\n'+' @{\,$\pm{}$\,} '+'\n' + r' S[table-format= 3.1] ')
-		else:
-			output.write(r' S[table-format= 3.1] '+'\n')
-	output.write(r'}' + '\n' + r'\toprule' + '\n')
+def linear(x, m, b):
+    return m*x + b
 
-	for i in range(len(data)):
-		if(i < (len(data)-1)):
-			if(f[i]):
-				output.write(r'\multicolumn{2}{c}{TITLE}'+'\n'+'&')
-			else:
-				output.write(r'{$\text{Title}$}'+'\n'+'&')
-		else:
-			if(f[i]):
-				output.write(r'\multicolumn{2}{c}{TITLE} \\'+'\n')
-			else:
-				output.write(r'{$\text{Title}$} \\'+'\n')
-	output.write(r' \midrule' + '\n')
+t = np.array([-20, -18, -16, -14, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20])
+n = np.array([225, 260, 244, 271, 333, 308, 360, 318, 382, 345, 360, 304, 317, 357, 307, 333, 326, 291, 247,
+172, 101])
 
-	#Tabelle
-	for j in range(len(data[0])):
-		i = 0
-		while i <= len(data)-1:
-				if(f[i]):
-					if(i == len(data)-1):
-						output.write(str(data[i][j].n) + '&' + str(data[i][j].s) + r'\\' + '\n')
-					else:
-						output.write(str(data[i][j].n)+ '&' + str(data[i][j].s) + '&')
-					i = i+1
-				else:
-					if(i == len(data)-1):
-						output.write(str(data[i][j]) + r'\\' + '\n')
-					else:
-						output.write(str(data[i][j]) + '&')
-					i = i+1
-	#Tabelle Ende
-	output.write(r'\bottomrule' + '\n' + r'\end{tabular}' + '\n' + r'\label{tab:LABEL}' + '\n' + r'\end{table}')
-	output.close()
+hoehe = np.mean(n[4:16])
+links = n[0:5]
+rechts = n[16:]
+dt_rechts = t[16:]
 
+# linearer Fit links und rechts
+params_links, cov_links = curve_fit(linear, t[0:5], links)
+errors_links = np.sqrt(np.diag(cov_links))
+m = ufloat(params_links[0], errors_links[0])
+b = ufloat(params_links[1], errors_links[1])
+print("Steigung links: ", m)
+print("y-Achsenabschnitt rechts: ", b)
+print("Halbe Höhe: ", hoehe/2)
 
-x = np.linspace(0, 10, 1000)
-y = x ** np.sin(x)
+params_rechts, cov_rechts = curve_fit(linear, dt_rechts, rechts)
+errors_rechts = np.sqrt(np.diag(cov_rechts))
+m = ufloat(params_rechts[0], errors_rechts[0])
+b = ufloat(params_rechts[1], errors_rechts[1])
+print("Steigung rechts: ", m)
+print("y-Achsenabschnitt rechts: ", b)
 
-plt.subplot(1, 2, 1)
-plt.plot(x, y, label='Kurve')
-plt.xlabel(r'$\alpha \:/\: \si{\ohm}$')
-plt.ylabel(r'$y \:/\: \si{\micro\joule}$')
-plt.legend(loc='best')
+# Berechnen des Schnittpunktes
+x_links = np.linspace(-25, -17)
+x_rechts = np.linspace(6, 20)
 
-plt.subplot(1, 2, 2)
-plt.plot(x, y, label='Kurve')
-plt.xlabel(r'$\alpha \:/\: \si{\ohm}$')
-plt.ylabel(r'$y \:/\: \si{\micro\joule}$')
-plt.legend(loc='best')
+links_w = linear(x_links, *params_links)
+rechts_w = linear(x_rechts, *params_rechts)
 
-# in matplotlibrc leider (noch) nicht möglich
-plt.tight_layout(pad=0, h_pad=1.08, w_pad=1.08)
-plt.savefig('plots/plot.pdf')
+plt.figure(1)
+plt.ylabel(r"$N(t) \, / \, (\mathrm{s})^{-1}$")
+plt.xlabel(r"$\mathrm{d}t \, / \, \mathrm{ns}$")
+plt.errorbar(t, n, yerr=np.sqrt(n), fmt='kx', label="Messwerte")
+plt.plot(x_links, linear(x_links, *params_links), 'r',
+         label="Regression links")
+plt.plot(x_rechts, linear(x_rechts, *params_rechts), 'r',
+         label="Regression rechts")
+plt.axhline(y=hoehe, xmin=0.15, xmax=0.75, label="Plateau")
+plt.axhline(y=hoehe/2, xmin=0.11, xmax=0.87, color="green",
+            label="Halbwertsbreite")
+plt.ylim(0, 410)
+plt.grid()
+plt.legend(loc="best")
+plt.tight_layout()
+plt.savefig("Plateau.pdf")
+plt.clf()
