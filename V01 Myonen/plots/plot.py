@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from scipy.optimize import curve_fit
+from scipy.optimize import curve_fit, minimize
 import uncertainties.unumpy as unp
 from uncertainties import ufloat
 import sympy
@@ -73,8 +73,8 @@ kanal_Fehler = np.array([0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.5, 0.1])
 
 params_kal, cov_kal = curve_fit(linear, kanal, t2)
 errors_kal = np.sqrt(np.diag(cov_kal))
-m = ufloat(params_kal[0], errors_kal[0])
-b = ufloat(params_kal[1], errors_kal[1])
+m1 = ufloat(params_kal[0], errors_kal[0])
+b1 = ufloat(params_kal[1], errors_kal[1])
 print("Steigung: ", m)
 print("y-Achsenabschnitt: ", b)
 
@@ -90,4 +90,83 @@ plt.grid()
 plt.legend(loc="best")
 plt.tight_layout()
 plt.savefig("Kanal.pdf")
+plt.clf()
+
+#Bestimmung des Untergrunds
+messdauer = 162391  # Sekunden
+Startimpulse = 3500949
+Startimpulse = ufloat(Startimpulse, np.sqrt(Startimpulse))
+N = Startimpulse/messdauer
+Ts = 20*10**(-6)    # Sekunden
+Nf = Startimpulse*N*Ts*unp.exp(-N*Ts)
+Nf_kanal = Nf/430
+
+Ts_real = m1*430 + b1
+Nf_real = Startimpulse*N*Ts_real*unp.exp(-N*Ts_real)
+Nf_kanal_real = Nf_real/430
+print("-------------------")
+print(Startimpulse)
+print("Fehlmessungen: ", Nf)
+print("Untergrundrate: ", Nf_kanal)
+print("reale Suchzeit: ", Ts_real)
+print("reale Fehlmessungen: ", Nf)
+print("reale Untergrundrate: ", Nf_kanal)
+
+#Einlesen der Daten für die Myonlebensdauer
+Daten = np.genfromtxt('../data/messung.Spe', skip_header=14, skip_footer=15, dtype='int32')
+bkg = 3.509
+ch  = np.linspace(2,511, 509)
+
+daten = []
+for i in range(509):
+	for j in range(Daten[i]):
+		daten.append(i)
+
+# plt.step(ch, Daten, where='mid', label='Messwerte')
+plt.hist(daten, bins=100, label='Messwerte')
+plt.xlabel('Kanal')
+plt.ylabel('Ereignisse')
+plt.xlim(0,431)
+plt.legend(loc='best', numpoints=1)
+plt.tight_layout()
+plt.savefig('spektrum1.pdf')
+plt.clf()
+
+
+def exp(t, N, tau, U):
+	return N*np.exp(-t/tau) + U
+
+
+params, cov = curve_fit(exp, linear(np.floor(ch), noms(m1), noms(b1)), Daten)
+errors = np.sqrt(np.diag(cov))
+N = ufloat(params[0], errors[0])
+tau = ufloat(params[1], errors[1])
+U = ufloat(params[2], errors[2])
+
+print('''
+	Ergebnisse des ungewichteten Fits:
+	---------------------------------------------
+	tau = {:.3f} micro seconds
+	N = {}
+	U = {}
+'''.format(tau, N, U))
+
+x = np.linspace(0, linear(509, noms(m1), noms(b1)), 1000)
+
+plt.errorbar(linear(ch, noms(m1), noms(b1)), Daten, yerr=np.sqrt(Daten),
+				fmt='kx',
+				ms=5,
+				mew=0.6,
+				elinewidth=0.6,
+				capsize=2,
+				capthick=0.6,
+				label='Messwerte')
+plt.plot(x, exp(x, noms(N), noms(tau), noms(U)), label='Ungewichteter fit, N = {:.0f}, tau = {:.2f}µs, U = {:.0f}'.format(N, tau, U), color='r')
+plt.xlabel('Zeit')
+plt.ylabel('Ereignisse')
+plt.grid()
+plt.xlim(0,linear(430, noms(m1), noms(b1)))
+plt.legend(loc='best', numpoints=1)
+plt.tight_layout()
+plt.savefig('spektrum1_fit.pdf')
 plt.clf()
