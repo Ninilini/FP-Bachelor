@@ -42,8 +42,8 @@ print("Steigung rechts: ", m)
 print("y-Achsenabschnitt rechts: ", b)
 
 # Berechnen des Schnittpunktes
-x_links = np.linspace(-25, -17)
-x_rechts = np.linspace(6, 20)
+x_links = np.linspace(-27, -9.5)
+x_rechts = np.linspace(12, 22)
 
 links_w = linear(x_links, *params_links)
 rechts_w = linear(x_rechts, *params_rechts)
@@ -56,10 +56,10 @@ plt.plot(x_links, linear(x_links, *params_links), 'r',
          label="Regression links")
 plt.plot(x_rechts, linear(x_rechts, *params_rechts), 'r',
          label="Regression rechts")
-plt.axhline(y=hoehe, xmin=0.15, xmax=0.75, label="Plateau")
-plt.axhline(y=hoehe/2, xmin=0.11, xmax=0.87, color="green",
+plt.axhline(y=hoehe, xmin=0.30, xmax=0.81, label="Plateau")
+plt.axhline(y=hoehe/2, xmin=0.09, xmax=0.92, color="green",
             label="Halbwertsbreite")
-plt.ylim(0, 410)
+plt.ylim(0, 420)
 plt.grid()
 plt.legend(loc="best")
 plt.tight_layout()
