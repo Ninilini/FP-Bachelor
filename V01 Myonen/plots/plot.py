@@ -63,7 +63,7 @@ plt.ylim(0, 420)
 plt.grid()
 plt.legend(loc="best")
 plt.tight_layout()
-plt.savefig("Plateau.pdf")
+plt.savefig("plots/Plateau.pdf")
 plt.clf()
 
 #Kalibrierung
@@ -89,7 +89,7 @@ plt.errorbar(kanal, t2 , xerr=kanal_Fehler, fmt='rx', label="Messwerte")
 plt.grid()
 plt.legend(loc="best")
 plt.tight_layout()
-plt.savefig("Kanal.pdf")
+plt.savefig("plots/Kanal.pdf")
 plt.clf()
 
 #Bestimmung des Untergrunds
@@ -113,7 +113,7 @@ print("reale Fehlmessungen: ", Nf)
 print("reale Untergrundrate: ", Nf_kanal)
 
 #Einlesen der Daten für die Myonlebensdauer
-Daten = np.genfromtxt('../data/messung.Spe', skip_header=14, skip_footer=15, dtype='int32')
+Daten = np.genfromtxt('data/messung.Spe', skip_header=14, skip_footer=15, dtype='int32')
 bkg = 3.509
 ch  = np.linspace(2,511, 509)
 
@@ -129,7 +129,7 @@ plt.ylabel('Ereignisse')
 plt.xlim(0,431)
 plt.legend(loc='best', numpoints=1)
 plt.tight_layout()
-plt.savefig('spektrum1.pdf')
+plt.savefig('plots/spektrum1.pdf')
 plt.clf()
 
 
@@ -161,12 +161,12 @@ plt.errorbar(linear(ch, noms(m1), noms(b1)), Daten, yerr=np.sqrt(Daten),
 				capsize=2,
 				capthick=0.6,
 				label='Messwerte')
-plt.plot(x, exp(x, noms(N), noms(tau), noms(U)), label='Ungewichteter fit, N = {:.0f}, tau = {:.2f}µs, U = {:.0f}'.format(N, tau, U), color='r')
+plt.plot(x, exp(x, noms(N), noms(tau), noms(U)), label='Ungewichteter Fit, N = {:.0f}, tau = {:.2f}µs, U = {:.0f}'.format(N, tau, U), color='r')
 plt.xlabel('Zeit')
 plt.ylabel('Ereignisse')
 plt.grid()
 plt.xlim(0,linear(430, noms(m1), noms(b1)))
 plt.legend(loc='best', numpoints=1)
 plt.tight_layout()
-plt.savefig('spektrum1_fit.pdf')
+plt.savefig('plots/spektrum1_fit.pdf')
 plt.clf()
