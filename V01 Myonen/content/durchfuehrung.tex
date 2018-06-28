@@ -38,6 +38,15 @@ Zu berücksichtigen ist jedoch, dass die meisten Myonen zu hochenergetisch sind,
 nur einen Startimpuls und keinen Stoppimpuls. Es wird also eine logische Schaltung mithilfe eines Univibrators und zweier AND-Gatter aufgebaut, die die Schaltung nach einer einstellbaren
 Suchzeit $T_\text{S}$ wieder in ihren Ausgangszustand versetzt, sodass nach Ablauf dieser Zeit das nächste Signal wieder als Startsignal gewertet wird. Da die Signale der Koinzidenzschaltung
 eine Länge von ca. $\SI{20}{ns}$ haben, ist vor dem Univibrator eine Verzögerungsleitung mit einer Verzögerung von ca. $\SI{30}{ns}$ eingebaut.
+Zu Beginn der Messung liegt am Ausgang des Univibrators ein L-Signal an, am invertierten Ausgang also ein H-Signal, sodass ein Signal von der Koinzidenzschaltung das 1. AND-Gatter passieren kann
+und die Zeitmessung am TAC startet. Nach der Verzögerung von $\SI{30}{ns}$ erreicht das Signal der Koinzidenzschaltung den Univibrator, welcher die Suchzeit startet. Während der Suchzeit liegt
+am Ausgang des Univibrators ein H-Signal an sodass ein Signal von der Koinzidenzschaltung nur das 2. AND-Gatter passiert und nicht das 1., sodass ein Stopp-Signal am TAC ankommt. Nach Ablauf der
+Suchzeit oder nach Eintreffen eines Signals springt der Univibrator zurück in seinen Ausgangszustand, sodass das nächste Signal wieder nur das 1. AND-Gatter passieren kann, die Zeitmessung des TACs
+also neu startet.
+
+Trotz des Herausfilterns vieler Störeffekte bleibt ein Untergrund übrig, da es eine endliche Wahrscheinlichkeit gibt, dass innerhalb der Suchzeit zwei Myonen hintereinander eintreffen, sodass
+die Zeitdifferenz zwischen den beiden Myonen als Lebensdauer aufgezeichnet wird, obwohl die Myonen nicht in dem Zeitraum zerfallen sind. Da eintreffende Myonen und zerfallende Myonen nicht voneinander
+unterschieden werden können, kann dieser Untergrund bei der Versuchsdurchführung nicht herausgefiltert werden, sondern muss bei der Auswertung berücksichtigt werden.
 
 \subsection{Durchführung}
 Zunächst muss die Schaltung aufgebaut werden und die einzelnen Komponenten müssen eingestellt werden. Angefangen wird bei den Diskriminatorschwellen, die so eingestellt werden, dass
