@@ -1,8 +1,6 @@
-\section{Einleitung}
+\section{Theorie}
 Ziel des Versuchs ist die Messung der charakteristischen Lebensdauer von Myonen, indem Individuallebensdauern
 einzelner Myonen gemessen werden.
-
-\section{Theorie}
 \subsection{Elementarteilchen nach dem Standardmodell}
 \label{sec:1}
 Nach dem Standardmodell gibt es zwei verschiedene Elementarteilchen, die Quarks und die Leptonen. Beide lassen sich in
@@ -10,10 +8,10 @@ drei Generationen einteilen. Quarks unterliegen der starken Wechselwirkung, wäh
 unterliegen. Leptonen sind Fermionen, also Spin-$\frac{1}{2}$-Teilchen, die der Fermi-Dirac-Statistik folgen.
 Die drei Generationen der Leptonen unterscheiden sich durch ihre Masse und haben eine unterschiedliche Lebensdauer.
 Elektronen gehören zur ersten Leptonen-Generation, während die hier betrachteten Myonen zur zweiten Generation gehören und in etwa
-die $\num{206.77}$-fache Masse der Elektronen besitzen. Im Gegensatz zu Elektronen sind Myonen (und Tauonen) nicht stabil, sondern
+die $\num{206}$-fache Masse der Elektronen besitzen. Im Gegensatz zu Elektronen sind Myonen (und Tauonen) nicht stabil, sondern
 haben eine endliche Lebensdauer.
 
-Die hier betrachteten Myonen entstehen in der höheren Erdatmosphäre. Zunächst treffen hochenergetische Protonen aus der Höhenstrahlung
+Die Myonen entstehen in der höheren Erdatmosphäre. Zunächst treffen hochenergetische Protonen
 auf Atomkerne der Luftmoleküle und erzeugen Pionen. Diese haben nur eine sehr kurze Lebensdauer und zerfallen dann in Myonen:
 \begin{align*}
   \uppi^+ &\to \upmu^+ + \upnu_{\upmu} \\
@@ -24,8 +22,8 @@ bis zur Erdoberfläche und können dort in einem Szintillator detektiert werden.
 
 In der Szintillatormaterie wechselwirken die Myonen mit den Molekülen und geben dabei mehrere MeV ihrer kinetischen Energie in kleinen
 Bruchteilen an die Moleküle ab. Diese werden dadurch angeregt und fallen nach einer Weile wieder in ihren Grundzustand zurück, wobei
-sie ein Photon aussenden. Bei Eintreffen eines Myons entsteht also eine große Anzahl Photonen mit Energie im Bereich des sichtbaren
-Lichts. Einige Myonen haben eine so geringe Energie, dass sie im Szintillator komplett abgebremst werden und dort nach einer Weile
+sie ein Photon aussenden. Bei Eintreffen eines Myons entsteht also eine große Anzahl an Photonen mit Energie im Bereich des sichtbaren
+Lichts. Einige Myonen haben eine so geringe Energie, dass sie im Szintillator komplett abgebremst werden und dort
 zerfallen. Die Myonen zerfallen folgendermaßen in Elektronen und Neutrinos:
 \begin{equation*}
   \upmu^- \to \symup{e}^- + \bar{\upnu}_\text{e} + \upnu_{\upmu} \,.
@@ -45,22 +43,21 @@ ergibt sich bei einer Gesamtteilchenzahl $N$ für die Anzahl $\symup{d}N$ der Te
   \symup{d}N = -N\symup{d}W = -\lambda N\symup{d}t \,,
 \end{equation}
 wobei $\symup{d}W = \lambda\symup{d}t$ die Zerfallswahrscheinlichkeit eines einzelnen Teilchens im Zeitintervall $\symup{d}t$ ist und $\lambda$ die Zerfallskonstante ist.
-Für eine sehr große Teilchenzahl $N$ kann dieser Zusammenhang näherungsweise integriert werden:
+Für eine sehr große Teilchenzahl $N$ kann dieser Zusammenhang integriert werden:
 \begin{equation}
   \frac{N(t)}{N_0} = \text{e}^{-\lambda t} \,.
 \end{equation}
-Daraus ergibt sich die exponentielle Verteilungsfunktion der Lebensdauer $t$:
+Durch Bildung von
+\begin{equation*}
+  \frac{\symup{d}N(t)}{N_0} = \frac{N(t) - N(t+\symup{d}t)}{N_0}
+\end{equation*}
+ergibt sich die exponentielle Verteilungsfunktion der Lebensdauer $t$:
 \begin{equation}
   \frac{\symup{d}N(t)}{N_0} = \lambda\text{e}^{-\lambda t}\symup{d}t\,.
   \label{eq:verteilung}
 \end{equation}
 Die mittlere Lebensdauer ergibt sich als Mittelwert aus allen möglichen Lebensdauern gewichtet mit der Verteilungsfunktion. Dies entspricht dem Erwartungswert
 \begin{equation}
-  \text{E}x := \int_{-\infty}^\infty xf(x)\symup{d}x
+  \tau = \int_{-\infty}^\infty \lambda t \text{e}^{-\lambda t} \symup{d}t = \frac{1}{\lambda}
 \end{equation}
-der Verteilungsfunktion \eqref{eq:verteilung}.
-Es ergibt sich:
-\begin{equation}
-  \tau = \int_{-\infty}^\infty \lambda t \text{e}^{-\lambda t} \symup{d}t = \frac{1}{\lambda} \,,
-\end{equation}
-die mittlere Lebensdauer $\tau$ entspricht also der inversen Zerfallskonstante $\lambda$.
+der Verteilungsfunktion \eqref{eq:verteilung}. Die mittlere Lebensdauer $\tau$ entspricht also der inversen Zerfallskonstante $\lambda$.
