@@ -1,1 +1,175 @@
 \section{Diskussion}
+\label{sec:diskussion}
+
+\subsection{Kalibrierung und vorbereitende Messungen}
+Die Bestimmung der optimalen Verzögerungszeit liefert die in
+Abbildung~\ref{fig:verzoegerung} dargestellten Zählraten.
+Bei~$T_{\symup{VZ}}=\SI{4}{\nano\second}$ wird im dem erwarteten Plateau ein recht
+deutliches Maximum gemessen.\\
+Die Raten werden durch Zählen der Impulse in einem~\SI{15}{\second}-Intervall
+bestimmt. Eine längere Zählzeit würde zu einem präziseren Ergebnis führen, da die
+statistischen Schwankungen verringert werden. Dadurch würde sich das Plateau
+deutlicher abueichnen. Zur Zeitmessung wird eine von Hand bediente Stoppuhr
+verwendet. Dies führt aufgrund der menschlichen Reaktionszeit zu weiteren Fehlern,
+die das Ergebnis beeinflussen.\\
+Die Versögerungszeit $\symup{\Delta}t_K = \SI{39}{\nano\second}$ ist
+mit einer Abweichung von \SI{2.5}{\percent} kompatibel mit der Summe der beiden
+Breiten der Diskriminatoren. Dies spricht für eine erfolgreiche Maximierung der
+Zählrate.\\
+Die Kalibrierung der Zeitachse des Vielkanalanalysators erfolgt mit Hilfe einer
+linearen Regression. Die Unsicherheiten der berechneten Steigung ist
+mit~\SI{0.02}{\percent} sehr klein. Dies spricht für eine gute Qualität der
+Kalibrierung.
+
+\subsection{Bestimmung der mittleren Lebensdauer eines Myons}
+Im Versuch wird die mittlere Lebensdauer eines Myons zu
+
+\begin{equation}
+  \tau=\SI{2.252(62)}{\micro\second}
+\end{equation}
+
+bestimmt. Der Literaturwert~\cite{pdg} beträgt
+
+\begin{equation}
+  \tau_{\symup{lit}}=\SI{2.1969811(2)}{\micro\second}
+\end{equation}
+
+woraus sich eine relative Abweichung von~\SI{2.5}{\percent} ergibt. Der
+Literaturwert liegt innerhalb der~$5\sigma$-Umgebung des Messwertes.
+
+Der gemessene Untergrund, der sich aus der Ausgleichsrechnung der Messwerte
+ergibt, beträgt~$U_0=\num{3.75(24)}$ Ereignisse pro Kanal. Der erwartete
+Untergrund wird zu~$U_0=\num{2.2(10)}$ Ereignisse pro Kanal bestimmt.
+Somit liegt der erwartete Wert innerhalb der Messungenauigkeit, jedoch ist der
+Fehler in der gleichen Größenordnung wie der Wert selbst. Erwartung und Messung
+des Untergrundes passen nicht gut zusammen.\\
+Insgesamt werden~\num{16768} Stoppimpulse bei~\num{3500949} Startimpulsen
+vom Zählwerk gemessen. Die Addition aller Impulse, die der Vielkanalanalysator
+an den Rechner geleitet hat, ergibt jedoch nur~\num{16087} Impulse. Die
+beobachtete Differenz von~\num{681} Impulsen lässt auf Fehler am
+Vielkanalanalysator oder an der Übertragungsleitung schließen. Es wird vermutet,
+dass im Bereich kleiner Zeitdifferenzen (Kanal~\num{0} bis~\num{2})
+Impulse vom Vielkanalanalysator nicht registriert werden.
+
+% \section{Messdaten}
+% \label{sec:Messdaten}
+%
+% \begin{center}
+%     \begin{longtable}{S[table-format=3.0]
+%                       S[table-format=3.0]|
+%                       S[table-format=3.0]
+%                       S[table-format=3.0]|
+%                       S[table-format=3.0]
+%                       S[table-format=3.0]|
+%                       S[table-format=3.0]
+%                       S[table-format=3.0]|
+%                       S[table-format=3.0]
+%                       S[table-format=3.0]|
+%                       S[table-format=3.0]
+%                       S[table-format=3.0]}
+%
+%     % Definiere erste Zeile der ERSTEN Tabellenseite
+%     \toprule
+%     {Kanal} & {$N$} & {Kanal} & {$N$} & {Kanal} & {$N$} & {Kanal} & {$N$} & {Kanal} & {$N$} & {Kanal} & {$N$}\\
+%     \midrule
+%     \endfirsthead
+%
+%     % Definiere erste Zeile einer Tabellenseite
+%     \midrule
+%     {Kanal} & {$N$} & {Kanal} & {$N$} & {Kanal} & {$N$} & {Kanal} & {$N$} & {Kanal} & {$N$} & {Kanal} & {$N$}\\
+%     \midrule
+%     \endhead
+%
+%     % Definiere das Ende einer Tabellenseite
+%     \bottomrule
+%     \endfoot
+%
+%     % Messdaten
+%      0 &    0	&	 86	&	114	&	172	&	27 & 258 &  6	&	344	&	0	&	430 &	0 \\
+%      1 &    0	&	 87	&	127	&	173	&	12 & 259 & 11	&	345	&	0	&	431 &	0 \\
+%      2 &   25	&	 88	&	115	&	174	&	28 & 260 &  6	&	346	&	0	&	432 &	0 \\
+%      3 &  222	&	 89	&	109	&	175	&	26 & 261 &  9	&	347	&	0	&	433 &	0 \\
+%      4 &  541	&	 90	&	117	&	176	&	15 & 262 &  8	&	348	&	0	&	434 &	0 \\
+%      5 &  285	&	 91	&	120	&	177	&	31 & 263 & 11	&	349	&	0	&	435 &	0 \\
+%      6 &  249	&	 92	&	105	&	178	&	14 & 264 &  7	&	350	&	0	&	436 &	0 \\
+%      7 &  307	&	 93	&	 92	&	179	&	16 & 265 &  6	&	351	&	0	&	437 &	0 \\
+%      8 &  302	&	 94	&	 96	&	180	&	20 & 266 &  7	&	352	&	0	&	438 &	0 \\
+%      9 &  261	&	 95	&	 99	&	181	&	18 & 267 &  8	&	353	&	0	&	439 &	0 \\
+%     10 &  231	&	 96	&	116	&	182	&	18 & 268 &  4	&	354	&	0	&	440 &	0 \\
+%     11 &  240	&	 97	&	 93	&	183	&	14 & 269 & 12	&	355	&	0	&	441 &	1 \\
+%     12 &  269	&	 98	&	 82	&	184	&	17 & 270 &  4	&	356	&	0	&	442 &	0 \\
+%     13 &  277	&	 99	&	 91	&	185	&	17 & 271 &  8	&	357	&	0	&	443 &	0 \\
+%     14 &  254	&	100	&	 94	&	186	&	18 & 272 &  4	&	358	&	0	&	444 &	0 \\
+%     15 &  217	&	101	&	 85	&	187	&	27 & 273 &  4	&	359	&	0	&	445 &	0 \\
+%     16 &  250	&	102	&	 97	&	188	&	14 & 274 &  5	&	360	&	0	&	446 &	0 \\
+%     17 &  217	&	103	&	 73	&	189	&	13 & 275 &  3	&	361	&	0	&	447 &	0 \\
+%     18 &  238	&	104	&	 83	&	190	&	14 & 276 &  7	&	362	&	0	&	448 &	0 \\
+%     19 &  229	&	105	&	 81	&	191	&	16 & 277 &  2	&	363	&	0	&	449 &	0 \\
+%     20 &  208	&	106	&	 78	&	192	&	19 & 278 &  6	&	364	&	0	&	450 &	0 \\
+%     21 &  226	&	107	&	 75	&	193	&	13 & 279 &  4	&	365	&	0	&	451 &	0 \\
+%     22 &  222	&	108	&	 68	&	194	&	20 & 280 &  6	&	366	&	0	&	452 &	0 \\
+%     23 &  471	&	109	&	 68	&	195	&	22 & 281 &  3	&	367	&	0	&	453 &	0 \\
+%     24 &  418	&	110	&	 71	&	196	&	13 & 282 &  7	&	368	&	0	&	454 &	0 \\
+%     25 &  434	&	111	&	 77	&	197	&	21 & 283 &  5	&	369	&	1	&	455 &	0 \\
+%     26 &  410	&	112	&	 53	&	198	&	12 & 284 &  4	&	370	&	0	&	456 &	0 \\
+%     27 &  381	&	113	&	 66	&	199	&	15 & 285 &  6	&	371	&	0	&	457 &	0 \\
+%     28 &  442	&	114	&	 79	&	200	&	14 & 286 & 10	&	372	&	0	&	458 &	0 \\
+%     29 &  380	&	115	&	 80	&	201	&	12 & 287 &  5	&	373	&	0	&	459 &	0 \\
+%     30 &  392	&	116	&	 60	&	202	&	21 & 288 &  5	&	374	&	0	&	460 &	0 \\
+%     31 &  376	&	117	&	 66	&	203	&	18 & 289 &  7	&	375	&	0	&	461 &	0 \\
+%     32 &  338	&	118	&	 54	&	204	&	12 & 290 &  6	&	376	&	0	&	462 &	0 \\
+%     33 &  367	&	119	&	 51	&	205	&	19 & 291 &  3	&	377	&	0	&	463 &	0 \\
+%     34 &  350	&	120	&	 57	&	206	&	17 & 292 &  4	&	378	&	0	&	464 &	1 \\
+%     35 &  369	&	121	&	 41	&	207	&	14 & 293 &  5	&	379	&	0	&	465 &	0 \\
+%     36 &  318	&	122	&	 79	&	208	&	14 & 294 &  6	&	380	&	0	&	466 &	0 \\
+%     37 &  344	&	123	&	 44	&	209	&	17 & 295 &  4	&	381	&	0	&	467 &	0 \\
+%     38 &  308	&	124	&	 63	&	210	&	14 & 296 &  6	&	382	&	0	&	468 &	0 \\
+%     39 &  322	&	125	&	 54	&	211	&	10 & 297 &  8	&	383	&	0	&	469 &	0 \\
+%     40 &  299	&	126	&	 43	&	212	&	 7 & 298 &  8	&	384	&	0	&	470 &	0 \\
+%     41 &  269	&	127	&	 60	&	213	&	26 & 299 &  7	&	385	&	0	&	471 &	0 \\
+%     42 &  293	&	128	&	 49	&	214	&	11 & 300 &  8	&	386	&	0	&	472 &	0 \\
+%     43 &  324	&	129	&	 62	&	215	&	13 & 301 &  4	&	387	&	0	&	473 &	0 \\
+%     44 &  282	&	130	&	 52	&	216	&	12 & 302 &  5	&	388	&	0	&	474 &	0 \\
+%     45 &  281	&	131	&	 46	&	217	&	13 & 303 &  7	&	389	&	0	&	475 &	0 \\
+%     46 &  288	&	132	&	 50	&	218	&	13 & 304 &  5	&	390	&	0	&	476 &	0 \\
+%     47 &  279	&	133	&	 41	&	219	&	16 & 305 &  4	&	391	&	0	&	477 &	0 \\
+%     48 &  272	&	134	&	 49	&	220	&	16 & 306 &  7	&	392	&	0	&	478 &	0 \\
+%     49 &  263	&	135	&	 38	&	221	&	15 & 307 &  1	&	393	&	0	&	479 &	0 \\
+%     50 &  261	&	136	&	 53	&	222	&	10 & 308 &  5	&	394	&	0	&	480 &	0 \\
+%     51 &  250	&	137	&	 44	&	223	&	11 & 309 &  3	&	395	&	0	&	481 &	0 \\
+%     52 &  275	&	138	&	 35	&	224	&	16 & 310 &  9	&	396	&	0	&	482 &	0 \\
+%     53 &  234	&	139	&	 28	&	225	&	11 & 311 &  5	&	397	&	0	&	483 &	0 \\
+%     54 &  231	&	140	&	 44	&	226	&	 7 & 312 &  7	&	398	&	0	&	484 &	0 \\
+%     55 &  227	&	141	&	 43	&	227	&	11 & 313 &  3	&	399	&	0	&	485 &	0 \\
+%     56 &  198	&	142	&	 33	&	228	&	 8 & 314 &  5	&	400	&	1	&	486 &	0 \\
+%     57 &  219	&	143	&	 36	&	229	&	17 & 315 &  8	&	401	&	0	&	487 &	0 \\
+%     58 &  213	&	144	&	 51	&	230	&	 6 & 316 &  6	&	402	&	0	&	488 &	0 \\
+%     59 &  217	&	145	&	 43	&	231	&	11 & 317 &  6	&	403	&	0	&	489 &	0 \\
+%     60 &  222	&	146	&	 29	&	232	&	 8 & 318 &  6	&	404	&	0	&	490 &	0 \\
+%     61 &  187	&	147	&	 37	&	233	&	11 & 319 &  4	&	405	&	0	&	491 &	0 \\
+%     62 &  199	&	148	&	 30	&	234	&	12 & 320 &  6	&	406	&	0	&	492 &	0 \\
+%     63 &  181	&	149	&	 29	&	235	&	 9 & 321 & 11	&	407	&	0	&	493 &	0 \\
+%     64 &  162	&	150	&	 28	&	236	&	10 & 322 &  6	&	408	&	0	&	494 &	0 \\
+%     65 &  194	&	151	&	 27	&	237	&	 9 & 323 &  6	&	409	&	0	&	495 &	0 \\
+%     66 &  192	&	152	&	 41	&	238	&	11 & 324 &  6	&	410	&	0	&	496 &	0 \\
+%     67 &  176	&	153	&	 33	&	239	&	15 & 325 &  7	&	411	&	0	&	497 &	0 \\
+%     68 &  172	&	154	&	 37	&	240	&	13 & 326 &  3	&	412	&	0	&	498 &	0 \\
+%     69 &  181	&	155	&	 33	&	241	&	 6 & 327 &  3	&	413	&	0	&	499 &	0 \\
+%     70 &  163	&	156	&	 34	&	242	&	 9 & 328 &  5	&	414	&	0	&	500 &	0 \\
+%     71 &  176	&	157	&	 29	&	243	&	13 & 329 &  8	&	415	&	0	&	501 &	0 \\
+%     72 &  165	&	158	&	 20	&	244	&	 8 & 330 &  5	&	416	&	0	&	502 &	0 \\
+%     73 &  146	&	159	&	 28	&	245	&	11 & 331 &  6	&	417	&	0	&	503 &	0 \\
+%     74 &  142	&	160	&	 27	&	246	&	 9 & 332 & 11	&	418	&	0	&	504 &	0 \\
+%     75 &  163	&	161	&	 29	&	247	&	 8 & 333 &  1	&	419	&	0	&	505 &	0 \\
+%     76 &  145	&	162	&	 30	&	248	&	 7 & 334 &  8	&	420	&	0	&	506 &	0 \\
+%     77 &  141	&	163	&	 33	&	249	&	 5 & 335 &  4	&	421	&	0	&	507 &	0 \\
+%     78 &  145	&	164	&	 26	&	250	&	 8 & 336 &  6	&	422	&	0	&	508 &	0 \\
+%     79 &  138	&	165	&	 28	&	251	&	11 & 337 & 10	&	423	&	0	&	509 &	0 \\
+%     80 &  114	&	166	&	 29	&	252	&	 7 & 338 &  2	&	424	&	0	&	510 &	0 \\
+%     81 &  136	&	167	&	 24	&	253	&	12 & 339 &  5	&	425	&	0	&	511 &	0 \\
+%     82 &  132	&	168	&	 36	&	254	&	13 & 340 &  2	&	426	&	1	&     &   \\
+%     83 &  134	&	169	&	 28	&	255	&	14 & 341 &  3	&	427	&	0	&     &   \\
+%     84 &  111	&	170	&	 20	&	256	&	 6 & 342 &  5	&	428	&	0	&     &   \\
+%     85 &  111	&	171	&	 26	&	257	&	13 & 343 &  0	&	429	&	0	&     &   \\
+%     \end{longtable}
+% \end{center}
