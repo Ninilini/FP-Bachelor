@@ -1,14 +1,14 @@
 \section{Auswertung}
 \label{sec:auswertung}
 Die in der Auswertung angegebenen Größen sind stets auf die erste signifikante
-Stelle des Fehlers gerundet. Setzt sich eine Größe über mehrere Schritte aus
+Stelle der Unsicherheit gerundet. Setzt sich eine Größe über mehrere Schritte aus
 anderen Größen zusammen, so wird erst am Ende gerundet, um Fehler zu minimieren.
 Zur Auswertung wird die Programmiersprache \texttt{python (Version 3.6.5)} mit
 den Bibliothekserweiterungen \texttt{numpy}~\cite{numpy},
 \texttt{scipy}~\cite{scipy} und \texttt{matplotlib}~\cite{matplotlib} verwendet.\\
 \newline
 Da es sich bei den aufgenommenen Werten um Zählwerte handelt, sind diese mit einem
-Poissonfehler behaftet. Dadurch wird bei ~$N$ erfassten Spannungsimpulsen ein Fehler
+Poissonfehler behaftet. Dadurch wird bei ~$N$ erfassten Spannungsimpulsen eine Unsicherheit
 von~$\sqrt{N}$ angenommen.
 
 \subsection{Justierung und Überprüfung der Koinzidenzapparatur}
@@ -82,7 +82,7 @@ gewichteter Mittelwert~$\bar{x}_i$ aller bei einer bestimmten Zeitdifferenz~$\sy
 ansprechenden Kanäle bestimmt.
 
 \begin{equation}
-  \bar{x}_i=\frac{1}{N_i}\sum_{j=1}^{N_i}n_{ij}x_{ij}
+  \bar{x}_i=\frac{1}{N_i}\sum_{j=1}^{N_i}n_{ij}x_{ij}.
   \label{eq:kanal_mittelwert}
 \end{equation}
 
@@ -108,7 +108,7 @@ liefert die Gerade
 wobei~$\symup{k}$ für die Nummer des Kanals steht.\footnote{Die lineare
 Regression wird mit Hilfe der Funktion~\texttt{curve\_fit} aus der
 Bibliothek~\texttt{scipy.optimize} durchgeführt. Die Regression nur mit den
-Mittelwerten durchgeführt. Die Fehler der Parameter ergeben sich dann ausschließlich
+Mittelwerten durchgeführt. Die Unsicherheiten der Parameter ergeben sich dann ausschließlich
 aus den Fehlern der Regressionrechnung.} Abbildung~\ref{fig:kalibrierung} zeigt
 die aufgenommen Messwerte sowie die berechnete Regressionsgerade. Für die Kanäle
 außerhalb der gemessenen Stützstellen ergibt sich die Zeitdifferenz durch Extrapolation
@@ -156,7 +156,7 @@ beträgt
   \label{eq:rate_start}
 \end{equation}
 
-Die Anzahl der Untergrundkandidaten bestimmt sich aus der Wahrscheinlichkeit,
+Die Anzahl der Untergrundereignisse bestimmt sich aus der Wahrscheinlichkeit,
 dass innerhalb der Suchzeit, die durch ein Myon gestartet wurde, ein weiteres
 Myon vom Detektor registriert wird. Dabei folgt die Wahrscheinlichkeit einer
 Poissonverteilung. Die Suchzeit wird am Gerät
@@ -186,12 +186,12 @@ ergibt sich der erwartete mittlere Untergrund pro Kanal zu
   \label{eq:untergrund_kanal}
 \end{equation}
 
-Der Fehler von~$U_0$ wird im Folgenden aufgrund der geringen Größe
+Die Unsicherheit von~$U_0$ wird im Folgenden aufgrund der geringen Größe
 vernachlässigt.
 
 \subsection{Bestimmung der mittleren Lebensdauer eines Myons}
 Die vom Vielkanalanalysator erfassten Messwerte sind im Anhang aufgelistet.
-Abbildung~\ref{fig:spektrum1} zeigt die Messwerte in einem Histogramm. Um nun
+Die Abbildung~\ref{fig:spektrum1} zeigt die Messwerte in einem Histogramm. Um nun
 die mittlere Lebensdauer~$\tau$ eines Myons bestimmen zu können, wird eine Funktion
 der Form
 
@@ -200,9 +200,9 @@ der Form
   \label{eq:fitfunktion}
 \end{equation}
 
-an die Messwerte angepasst. Hierbei ist~$k$ wieder die Kanalnummer. Die
+an die Messwerte angepasst. Hierbei ist~$k$ die Kanalnummer. Die
 Anpassung im Bezug auf die Kanalnummern erweist sich als vorteilhaft, da bei
-dieser keine Fehler in den~$x$-Werten auftreten. Für die Anpassung werden die
+dieser keine Unsicherheiten in den~$x$-Werten auftreten. Für die Anpassung werden die
 Kanäle~\num{0} bis~\num{2} ausgeschlossen, da sie stark vom exponentiellen Verlauf
 abweichen und somit als Folge eines fehlerhaften Versuchsaufbaus interpretiert
 werden können. Eine weitere Diskussion der Abweichungen findet sich in
@@ -216,10 +216,10 @@ liefert die Parameter
   \label{eq:fitparameter}
 \end{align}
 
-Die mittlere Lebensdauer~$\tau$ eines Myons ergibt sich zu
+Die mittlere Lebensdauer~$\tau$ eines Myons ergibt sich zu:
 
 \begin{equation}
-  \tau=\SI{2.252(62)}{\micro\second}
+  \tau=\SI{2.252(62)}{\micro\second}.
   \label{eq:ergebnis}
 \end{equation}
 
