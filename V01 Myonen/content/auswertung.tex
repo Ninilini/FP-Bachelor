@@ -1,10 +1,243 @@
 \section{Auswertung}
-Hallo ich \textbf{hasse} das Praktikum und habe keinen Bock mehr !
+\label{sec:auswertung}
+Die in der Auswertung angegebenen Größen sind stets auf die erste signifikante
+Stelle des Fehlers gerundet. Setzt sich eine Größe über mehrere Schritte aus
+anderen Größen zusammen, so wird erst am Ende gerundet, um Fehler zu minimieren.
+Zur Auswertung wird die Programmiersprache \texttt{python (Version 3.6.5)} mit
+den Bibliothekserweiterungen \texttt{numpy}~\cite{numpy},
+\texttt{scipy}~\cite{scipy} und \texttt{matplotlib}~\cite{matplotlib} verwendet.\\
+\newline
+Da es sich bei den aufgenommenen Werten um Zählwerte handelt, sind diese mit einem
+Poissonfehler behaftet. Dadurch wird bei ~$N$ erfassten Spannungsimpulsen ein Fehler
+von~$\sqrt{N}$ angenommen.
 
+\subsection{Justierung und Überprüfung der Koinzidenzapparatur}
+Die zwischen die Sekundärelektronenvervielfacher und die Koinzidenzapparatur
+geschalteten Diskriminatoren liefern ab einer nicht näher bestimmten eingehenden
+Spannungsschwelle~\SI{20}{\nano\second} breite Spannungsimpulse.\\
+\newline
+Zur Bestimmung der optimalen Verzögerungzeit, sodass die Zählrate maximiert wird,
+wird die Zählrate in Abhängigkeit der Verzögerungszeit bestimmt. Dazu wird an der
+einen Verzögerungsleitung eine feste Verzögerung von~\SI{20}{\nano\second} eingestellt
+und die zweite von $0$ bis \SI{40}{\nano\second} variiert.
+Die dabei aufgenommenen Messwerte, das heißt die in einer Zeitspanne von~\SI{15}{\second}
+gemessene Anzahl an Spannungsimpulsen, sind in Tabelle~\ref{tab:verzoegerung} aufgeführt.
+Abbildung~\ref{fig:verzoegerung} zeigt die berechnete Zählrate aufgetragen gegen
+die Verzögerungszeit. Es zeigt sich, dass eine relative Verzögerung
+von~$T_{\symup{VZ}}=\SI{4}{\nano\second}$ zu einer maximalen Zählrate führt.
+Die Auflösungszeit~$\symup{\Delta}t_K$ der Koinzidenzapparatur ist gleichbedeutend
+mit der in grün eingezeichneten Halbwertsbreite. Zur Bestimmung von dieser wird
+ein linearer Fit für das Plateau und die beiden Flanken durchgeführt. Durch die halbe
+Höhe des Plateau ist anschließend die Halbwertsbreite gegeben. Durch die Schnittpunkte
+mit den beiden Flanken lässt sich nun die Verzögerungszeit zu
+\begin{equation}
+  \symup{\Delta}t_K = |-28| + |11| = \SI{39}{\nano\second}
+\end{equation}
+bestimmen.
+Die Gesamtbreite der beiden Diskriminatoren beträgt \SI{40}{\nano\second}, dies
+führt zu einer Abweichung von \SI{2.5}{\percent}.
 
-\begin{figure}
+\begin{table}[htb]
   \centering
-  \includegraphics{plots/Kanal.pdf}
-  \caption{Plot.}
-  \label{fig:plot}
+  \caption{Messwerte zur Bestimmung der optimalen Verzögerungszeit.}
+  \begin{tabular}{S[table-format = 2.1] S[table-format = 3(2)] |
+                  S[table-format = 2.1] S[table-format = 3(2)] }
+    \toprule
+    {$t_{\symup{VZ}}$ in \si{\nano\second}} & {Impulse in \SI{15}{\second}} & {$t_{\symup{VZ}}$ in \si{\nano\second}} & {Impulse in \SI{15}{\second}} \\
+    \midrule
+    -20.0 & 586(24) &   2.0 & 646(25) \\
+     -18.0 & 593(24) &  4.0 & 621(25) \\
+     -16.0 & 579(24) &  6.0 & 616(25) \\
+     -14.0 & 599(24) &  8.0 & 668(26) \\
+     -12.0 & 605(24) &  10.0 & 627(25) \\
+     -10.0 & 599(24) &  12.0 & 620(25) \\
+     -8.0 & 562(24) &   14.0 & 639(25) \\
+     -6.0 & 620(25) &   16.0 & 597(24) \\
+     -4.0 & 577(24) &   18.0 & 582(24) \\
+     -2.0 & 577(24) &   20.0 & 568(24) \\
+      0.0 & 574(24) &   &  \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:verzoegerung}
+\end{table}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.7\textwidth]{plots/Plateau.pdf}
+  \caption{Messwerte zur Bestimmung der optimalen Verzögerungszeit.}
+  \label{fig:verzoegerung}
+\end{figure}
+
+\subsection{Zeitkalibrierung des Vielkanalanalysators}
+Mit Hilfe eines Doppelimpulsgenerators wird eine Kalibrierung der Zeitachse des
+Vielkanalanalysators durchgeführt. Der Doppelimpulsgenerator
+liefert mit einer hohen Rate je zwei Spannungsimpulse, deren zeitlicher Abstand
+über einen Kodierschalter festgelegt werden kann. Die Zeitdifferenzen, sowie die
+jeweils ansprechenden Kanäle sind in Tabelle~\ref{tab:kalibrierung} aufgeführt.
+Es zeigt sich, dass für eine Zeitdifferenz häufig nicht nur ein Kanal, sondern
+auch ein direkt benachbarter Kanal anspricht. Dies ist vermutlich auf
+Störungen in der Übertragungsleitung des Vielkanalanalysators zurückzuführen.
+Um dennoch einem Kanal eine bestimmte Zeitdifferenz zuordnen zu können, wird ein
+gewichteter Mittelwert~$\bar{x}_i$ aller bei einer bestimmten Zeitdifferenz~$\symup{\Delta}t_i$
+ansprechenden Kanäle bestimmt.
+
+\begin{equation}
+  \bar{x}_i=\frac{1}{N_i}\sum_{j=1}^{N_i}n_{ij}x_{ij}
+  \label{eq:kanal_mittelwert}
+\end{equation}
+
+Hierbei ist~$N_i$ die Gesamtzahl an registrierten Ereignissen für eine bestimmte
+Zeitdifferenz. $n_{ij}$ ist die Anzahl der Ereignisse für einen bestimmten
+Kanal~$x_{ij}$. Weiterhin ergibt sich für jeden Mittelwert eine
+Standardabweichung~$\symup{\Delta}\bar{x}_i$:
+
+\begin{equation}
+  \symup{\Delta}\bar{x}_i=\sqrt{\frac{1}{N_i}\sum_{j=1}^{N_i}n_{ij}\left(x_{ij}-\bar{x}_i\right)^2}
+  \label{eq:kanal_standardabweichung}
+\end{equation}
+
+Für eine eindeutige Zuordnung einer Zeitdifferenzen zu einem entsprechenden Kanal,
+wird eine lineare Regression durch die gemessenen Stützstellen durchgeführt. Diese
+liefert die Gerade
+
+\begin{equation}
+  \symup{\Delta}t=\SI{0.04541(21)}{\micro\second}\cdot k+\SI{0.06(3)}{\micro\second}
+  \label{eq:kalibrierung}
+\end{equation}
+
+wobei~$\symup{k}$ für die Nummer des Kanals steht.\footnote{Die lineare
+Regression wird mit Hilfe der Funktion~\texttt{curve\_fit} aus der
+Bibliothek~\texttt{scipy.optimize} durchgeführt. Die Regression nur mit den
+Mittelwerten durchgeführt. Die Fehler der Parameter ergeben sich dann ausschließlich
+aus den Fehlern der Regressionrechnung.} Abbildung~\ref{fig:kalibrierung} zeigt
+die aufgenommen Messwerte sowie die berechnete Regressionsgerade. Für die Kanäle
+außerhalb der gemessenen Stützstellen ergibt sich die Zeitdifferenz durch Extrapolation
+der Regressionsgeraden. Es wird angenommen, dass auch die Kanäle mit $\symup{k}>200$
+dem linearen Zusammenhang folgen.
+
+\begin{table}[htb]
+  \centering
+  \caption{Messwerte zur Zeikalibrierung des Vielkanalanalysators.}
+  \begin{tabular}{S[table-format = 2.1] S[table-format = 3.1(1)]}
+    \toprule
+    {$\symup{\Delta}t$ in \si{\micro\second}} & {Zugeordneter Kanal} \\
+    \midrule
+    1.0 &  23.1(1) \\
+    2.0 &  45.5(1) \\
+    3.0 &  67.6(1) \\
+    4.0 &  89.6(1) \\
+    5.0 & 111.7(1) \\
+    6.0 & 133.8(1) \\
+    7.0 & 153.6(2) \\
+    8.0 & 177.9(5) \\
+    9.0 & 200.0(1) \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:kalibrierung}
+\end{table}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.7\textwidth]{plots/Kanal.pdf}
+  \caption{Messung zur Zeitkalibrierung des Vielkanalanalysators. Neben den
+  Messwerten ist auch die berechnete Regressionsgerade aufgetragen. Bei der
+  Berechnung der Regressionsgeraden werden die Fehler auf die Kanalnummern nicht
+  berücksichtigt.}
+  \label{fig:kalibrierung}
+\end{figure}
+
+\subsection{Abschätzung des Untergrundes}
+Insgesamt wurden~$N_{\symup{S}}=\num{3500949(1871)}$ Startimpulse bei einer
+Messzeit von~\SI{162391}{\second} registriert. Die daraus resultierende Rate
+beträgt
+
+\begin{equation}
+  \langle N_{\symup{S}}\rangle=\SI{21.559(12)}{\per\second}.
+  \label{eq:rate_start}
+\end{equation}
+
+Die Anzahl der Untergrundkandidaten bestimmt sich aus der Wahrscheinlichkeit,
+dass innerhalb der Suchzeit, die durch ein Myon gestartet wurde, ein weiteres
+Myon vom Detektor registriert wird. Dabei folgt die Wahrscheinlichkeit einer
+Poissonverteilung. Die Suchzeit wird am Gerät
+auf~$T_{\symup{S}}=\SI{20}{\micro\second}$ eingestellt. Die Betrachtung der
+Messwerte zeigt jedoch, dass ab einer Zeitdifferenz
+von~$T_{\symup{S}}=\SI{19.47(9)}{\micro\second}$ (dies entspricht nach
+Gleichung~\eqref{eq:kalibrierung} dem Kanal~\num{430}) keine Ereignisse mehr
+detektiert werden. Somit ist davon auszugehen, dass es sich hierbei um die
+tatsächliche Suchzeit handelt. Die Anzahl~$N_{\symup{F}}$ der registrierten
+Fehlereignisse unterscheidet sich auf Grund der geringen Abweichung aber nicht und
+ergibt sich zu
+
+\begin{equation}
+  N_{\symup{F}}(k=1)=N_{\symup{S}}\cdot\frac{\left(T_{\symup{S}}\langle N_{\symup{S}}\rangle\right)^k}{k!}\exp\left(T_{\symup{S}}\langle N_{\symup{S}}\rangle\right)=\num{1508(16)}.
+  \label{eq:untergrund_gesamt}
+\end{equation}
+
+Unter der Annahme, dass sich der erwartete Untergrund statistisch auf alle
+Kanäle gleichverteilt, lässt sich der Untergrund pro Kanal bestimmen. Dabei
+werden bei der Berechnung die Kanäle~\num{431} bis~\num{511} nicht berücksichtigt,
+da sie nicht signifikant zum exponentiellen Verlauf beitragen und sich vermutlich
+auf statistische Schwankungen zurückführen lassen. Umgerechnet auf die verbleibenden~\num{430} Kanäle
+ergibt sich der erwartete mittlere Untergrund pro Kanal zu
+
+\begin{equation}
+  U_0=\num{3.509(4)}
+  \label{eq:untergrund_kanal}
+\end{equation}
+
+Der Fehler von~$U_0$ wird im Folgenden aufgrund der geringen Größe
+vernachlässigt.
+
+\subsection{Bestimmung der mittleren Lebensdauer eines Myons}
+Die vom Vielkanalanalysator erfassten Messwerte sind im Anhang aufgelistet.
+Abbildung~\ref{fig:spektrum1} zeigt die Messwerte in einem Histogramm. Um nun
+die mittlere Lebensdauer~$\tau$ eines Myons bestimmen zu können, wird eine Funktion
+der Form
+
+\begin{equation}
+  N(t)=N_0\exp\left(-\frac{t(k)}{\tau}\right)+U_0
+  \label{eq:fitfunktion}
+\end{equation}
+
+an die Messwerte angepasst. Hierbei ist~$k$ wieder die Kanalnummer. Die
+Anpassung im Bezug auf die Kanalnummern erweist sich als vorteilhaft, da bei
+dieser keine Fehler in den~$x$-Werten auftreten. Für die Anpassung werden die
+Kanäle~\num{0} bis~\num{2} ausgeschlossen, da sie stark vom exponentiellen Verlauf
+abweichen und somit als Folge eines fehlerhaften Versuchsaufbaus interpretiert
+werden können. Eine weitere Diskussion der Abweichungen findet sich in
+Abschnitt~\ref{sec:diskussion}. Die Anpassung der
+verbleibenden Messwerte an die Funktion in Gleichung~\ref{eq:fitfunktion}
+liefert die Parameter
+
+\begin{align}
+  N_0&=\num{303(5)} \\
+  U_0&=\num{2.2(10)}\\
+  \label{eq:fitparameter}
+\end{align}
+
+Die mittlere Lebensdauer~$\tau$ eines Myons ergibt sich zu
+
+\begin{equation}
+  \tau=\SI{2.252(62)}{\micro\second}
+  \label{eq:ergebnis}
+\end{equation}
+
+Die Abbildung~\ref{fig:spektrum3} zeigt die Ausgleichsfunktion zusammen mit den
+Messwerten.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.7\textwidth]{plots/spektrum1.pdf}
+  \caption{Häufigkeitsverteilung der gemessenen Zerfallszeiten, ausgedrückt
+  durch die entsprechenden Kanäle des Vielkanalanalysators.}
+  \label{fig:spektrum1}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.7\textwidth]{plots/spektrum1_fit.pdf}
+  \caption{Messwerte zur Berechnung der mittleren Lebensdauer von Myonen und
+  Ausgleichsfunktion.}
+  \label{fig:spektrum3}
 \end{figure}
