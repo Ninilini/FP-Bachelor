@@ -17,8 +17,7 @@ def linear(x, m, b):
     return m*x + b
 
 t = np.array([-20, -18, -16, -14, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20])
-n = np.array([225, 260, 244, 271, 333, 308, 360, 318, 382, 345, 360, 304, 317, 357, 307, 333, 326, 291, 247,
-172, 101])
+n = np.array([15, 17, 16, 18, 22, 21, 24, 21, 25, 23, 24, 20, 21, 24, 20, 22, 22, 19, 16, 11, 7])
 
 hoehe = np.mean(n[4:16])
 links = n[0:5]
@@ -31,7 +30,7 @@ errors_links = np.sqrt(np.diag(cov_links))
 m = ufloat(params_links[0], errors_links[0])
 b = ufloat(params_links[1], errors_links[1])
 print("Steigung links: ", m)
-print("y-Achsenabschnitt rechts: ", b)
+print("y-Achsenabschnitt links: ", b)
 print("Halbe Höhe: ", hoehe/2)
 
 params_rechts, cov_rechts = curve_fit(linear, dt_rechts, rechts)
@@ -42,14 +41,14 @@ print("Steigung rechts: ", m)
 print("y-Achsenabschnitt rechts: ", b)
 
 # Berechnen des Schnittpunktes
-x_links = np.linspace(-27, -9.5)
+x_links = np.linspace(-30, -9.5)
 x_rechts = np.linspace(12, 22)
 
 links_w = linear(x_links, *params_links)
 rechts_w = linear(x_rechts, *params_rechts)
 
 plt.figure(1)
-plt.ylabel(r"$N(t) \, / \, (\mathrm{s})^{-1}$")
+plt.ylabel(r"$Rate \, (\mathrm{s})^{-1}$")
 plt.xlabel(r"$\mathrm{d}t \, / \, \mathrm{ns}$")
 plt.errorbar(t, n, yerr=np.sqrt(n), fmt='kx', label="Messwerte")
 plt.plot(x_links, linear(x_links, *params_links), 'r',
@@ -59,7 +58,7 @@ plt.plot(x_rechts, linear(x_rechts, *params_rechts), 'r',
 plt.axhline(y=hoehe, xmin=0.30, xmax=0.81, label="Plateau")
 plt.axhline(y=hoehe/2, xmin=0.09, xmax=0.92, color="green",
             label="Halbwertsbreite")
-plt.ylim(0, 420)
+plt.ylim(0, 30)
 plt.grid()
 plt.legend(loc="best")
 plt.tight_layout()
@@ -68,15 +67,15 @@ plt.clf()
 
 #Kalibrierung
 t2 = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
-kanal = np.array([23.1, 45.5, 67.6, 89.6, 111.7, 133.8, 153.6, 177.9, 200.0])
-kanal_Fehler = np.array([0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.2, 0.5, 0.1])
+kanal = np.array([22.1, 44.5, 66.6, 88.6, 110.7, 132.8, 152.6, 176.9, 199.0])
+kanal_Fehler = np.array([0.3, 0.5, 0.5, 0.6, 0.5, 0.4, 0.4, 0.5, 0.1])
 
 params_kal, cov_kal = curve_fit(linear, kanal, t2)
 errors_kal = np.sqrt(np.diag(cov_kal))
 m1 = ufloat(params_kal[0], errors_kal[0])
 b1 = ufloat(params_kal[1], errors_kal[1])
-print("Steigung: ", m)
-print("y-Achsenabschnitt: ", b)
+print("Steigung: ", m1)
+print("y-Achsenabschnitt: ", b1)
 
 x = np.linspace(0, 210)
 
@@ -116,29 +115,34 @@ print("reale Untergrundrate: ", Nf_kanal)
 #Einlesen der Daten für die Myonlebensdauer
 Daten = np.genfromtxt('data/messung.Spe', skip_header=14, skip_footer=15, dtype='int32')
 bkg = 3.509
-ch  = np.linspace(2,511, 509)
+ch  = np.linspace(8,430, 422)
 
+# Liste aus Daten[i] mal den channel wert
 daten = []
-for i in range(509):
-	for j in range(Daten[i]):
-		daten.append(i)
+for i in range(7, 429):
+	daten.append(Daten[i])
 
-# plt.step(ch, Daten, where='mid', label='Messwerte')
-plt.hist(daten, bins=100, label='Messwerte')
-plt.xlabel('Kanal')
-plt.ylabel('Ereignisse')
-plt.xlim(0,431)
-plt.legend(loc='best', numpoints=1)
-plt.tight_layout()
-plt.savefig('plots/spektrum1.pdf')
-plt.clf()
+# # plt.step(ch, Daten, where='mid', label='Messwerte')
+# plt.hist(daten, bins=100, label='Messwerte')
+# plt.xlabel('Kanal')
+# plt.ylabel('Ereignisse')
+# plt.xlim(0,431)
+# plt.legend(loc='best', numpoints=1)
+# plt.tight_layout()
+# plt.savefig('plots/spektrum1.pdf')
+# plt.clf()
+
 
 
 def exp(t, N, tau, U):
 	return N*np.exp(-t/tau) + U
 
 
-params, cov = curve_fit(exp, linear(np.floor(ch), noms(m1), noms(b1)), Daten)
+print('''
+    daten shape: {}
+    ch shape: {}
+'''.format(np.shape(daten), np.shape(ch)))
+params, cov = curve_fit(exp, linear(np.floor(ch), noms(m1), noms(b1)), daten)
 errors = np.sqrt(np.diag(cov))
 N = ufloat(params[0], errors[0])
 tau = ufloat(params[1], errors[1])
@@ -154,7 +158,7 @@ print('''
 
 x = np.linspace(0, linear(509, noms(m1), noms(b1)), 1000)
 
-plt.errorbar(linear(ch, noms(m1), noms(b1)), Daten, yerr=np.sqrt(Daten),
+plt.errorbar(linear(ch, noms(m1), noms(b1)), daten, yerr=np.sqrt(daten),
 				fmt='kx',
 				ms=5,
 				mew=0.6,
@@ -162,7 +166,7 @@ plt.errorbar(linear(ch, noms(m1), noms(b1)), Daten, yerr=np.sqrt(Daten),
 				capsize=2,
 				capthick=0.6,
 				label='Messwerte')
-plt.plot(x, exp(x, noms(N), noms(tau), noms(U)), label='Ungewichteter Fit, N = {:.0f}, tau = {:.2f}µs, U = {:.0f}'.format(N, tau, U), color='r')
+plt.plot(x, exp(x, noms(N), noms(tau), noms(U)), label='Ungewichteter Fit', color='r')
 plt.xlabel('Zeit')
 plt.ylabel('Ereignisse')
 plt.grid()
